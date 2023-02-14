@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('main-page', [App\Http\Controllers\MainPageController::class, 'index']);
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('settings', [App\Http\Controllers\SettingsController::class, 'index']);
     Route::get('about', [App\Http\Controllers\AboutController::class, 'index']);
     Route::get('option', [App\Http\Controllers\OptionController::class, 'index']);

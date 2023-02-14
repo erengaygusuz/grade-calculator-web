@@ -1,0 +1,191 @@
+body{
+	background-color: #C4D5EE;
+}
+
+.ust-bar{
+	height: 42px;
+	background: #1B75BB;
+	border: 1px solid #2F5190;
+}
+
+.not-hesaplamaya-don-butonu{
+	width: 40px;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-image : url(../img/notHesaplamayaDonBtn.svg);
+	background-position : center center;
+	background-size: 30px 30px;
+	background-color: #1B75BB;
+}
+
+.not-hesaplama-baslik{
+	width: 170px;
+	height: 40px;
+}
+
+.ayara-don-butonu{
+	width: 40px;
+	height: 40px;
+	float: right;
+	background-repeat: no-repeat;
+	background-image : url(../img/ayaraDonBtn.svg);
+	background-position : center center;
+	background-size: 30px 30px;
+	background-color: #1B75BB;
+}
+
+.uc-nokta{
+	width: 40px;
+	height: 40px;
+	float: right;
+	background-repeat: no-repeat;
+	background-image : url(../img/ucNokta.svg);
+	background-position : center center;
+	background-size: 30px 30px;
+	background-color: #1B75BB;
+}
+
+.hakkinda-bar{
+	height: 42px;
+	background: #1B75BB;
+	border-left: 1px solid #2F5190;
+	border-right: 1px solid #2F5190;
+	border-bottom: 1px solid #2F5190;
+}
+
+.hakkinda-baslik{
+	font-size: 18px;
+	color: #FFFFFF;
+	padding: 9px;
+}
+
+.hakkinda-not-1{
+	padding-top: 90px;
+	font-size: 18px;
+}
+
+.hakkinda-not-2{
+	padding-top: 70px;
+	font-size: 18px;
+	text-decoration: underline;
+}
+
+.hakkinda-eren{
+	width: 200px;
+	height: 80px;
+}
+
+.hakkinda-veysel{
+	width: 200px;
+	height: 80px;
+}
+
+.hakkinda-not-3{
+	padding-top: 90px;
+	font-size: 15px;
+}
+
+.row{
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.dropbtn {
+    background-color: #1B75BB;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #286090;
+}
+
+.dropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+	margin-top: 40px;
+    display: none;
+    position: absolute;
+    background-color: #286090;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #6ea3d0;}
+
+.show {display: block;}
+
+@media screen and (max-width: 768px) {
+	.ust-bar, .hakkinda-bar{
+		height: 37px;
+	}
+
+	.ayara-don-butonu{
+		width: 34px;
+		height: 34px;
+		background-size: 27px 27px;
+	}
+
+	.uc-nokta{
+		width: 34px;
+		height: 34px;
+		background-size: 27px 27px;
+	}
+
+	.not-hesaplamaya-don-butonu{
+		width: 34px;
+		height: 34px;
+		background-size: 27px 27px;
+	}
+
+	.not-hesaplama-baslik{
+		width: 150px;
+		height: 35px;
+	}
+
+	.hakkinda-not-1{
+		padding-top: 30px;
+		font-size: 16px;
+	}
+
+	.hakkinda-not-2{
+		padding-top: 70px;
+		font-size: 16px;
+		text-decoration: underline;
+	}
+
+	.hakkinda-not-3{
+		padding-top: 90px;
+		font-size: 13px;
+	}
+
+	.hakkinda-eren{
+		width: 180px;
+		height: 80px;
+	}
+
+	.hakkinda-veysel{
+		width: 180px;
+		height: 80px;
+	}
+
+	.hakkinda-baslik{
+		font-size: 16px;
+	}
+}
