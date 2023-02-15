@@ -35,73 +35,85 @@ if (isset($_POST['not-geri']))
 
     <!DOCTYPE html>
 
-<!-- Dilin türkçe olduğunu göstermek için gerekli yazım -->
 <html lang="tr">
 <head>
-
-    <!-- Türkçe karakter ve platform uyumluluğu için meta etiketleri -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Sayfa başlığı -->
     <title>Hakkında</title>
 
-    <!-- Bootstrap ve sayfaya özel css dosyasının çağrılması -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/hakkinda.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
 
-    <!-- Sayfa başlığı yanına eklenen ikon -->
     <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
-
-    <!-- Bazı eski tarayıcılar için gerekli kod, kullanma zorunluluğu yok -->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
-<!-- Genel div -->
-<div class="container-fluid" style="padding: 0px; width: 100%;">
-    <?php
-    //include 'ustBar1.php';
-    ?>
-        <!-- Hakkında bar -->
-    <div class="row hakkinda-bar">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hakkinda-baslik" style="padding: 8px 0px 0px 0px;">
-            <center>
-                Hakkında
-            </center>
-        </div>
+<nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
+    <a class="float-start" href="#">
+        <img class="about-grade-calculation-btn" style="margin-left: 10px;" src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
+    </a>
+    <div class="navbar-brand mx-auto" href="#">
+        <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
     </div>
-    <!-- Hakkında bilgi bölümü -->
+    <a class="float-end" href="#">
+        <div class="dropdown">
+            <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="ayar.php">
+                    <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                    Ayarlar
+                </a>
+                <a href="hakkinda.php">
+                    <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                    Hakkında
+                </a>
+                <form action="" method="POST">
+                    <a href="netting/cikis.php">
+                        <img src="{{asset('assets/img/cikisBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                        Çıkış
+                    </a>
+                </form>
+            </div>
+        </div>
+    </a>
+</nav>
+<nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
+    <div class="col-12 about-title text-center">
+        Hakkında
+    </div>
+</nav>
+<div class="container">
     <div class="row">
         <div class="col-lg-12" style="padding: 10px;">
-        <div class="panel panel-primary" style="margin: 10px; ">
-            <!-- Hakkında bölümü bilgi yazıları -->
-            <div class="panel-body">
-                <center><h6 class="hakkinda-not-1">Bu web sitesi Atılım Üniversitesi Hazırlık Okulu öğrencilerinin</br> notlarını kolaylıkla hesaplamalarını sağlamak amacıyla tasarlanmıştır.</h6>
-                    <h6 class="hakkinda-not-2">Hazırlayanlar</h6></center>
-                <div class="col-lg-12">
-                    <center><img class="hakkinda-eren" src="{{asset('assets/img/hakkindaEren.svg')}}"/></center>
-                </div>
-                <div class="col-lg-12">
-                    <center><img class="hakkinda-veysel" src="{{asset('assets/img/hakkindaVeysel.svg')}}"/></center>
-                </div>
-                <div class="col-lg-12 hakkinda-not-3">
-                    <center>© 2017 - 2019</center>
+            <div class="card card-primary" style="margin: 10px; ">
+                <div class="card-body text-center">
+                    <h6 class="about-text-1">
+                        Bu web sitesi Atılım Üniversitesi Hazırlık Okulu öğrencilerinin
+                        </br>
+                        notlarını kolaylıkla hesaplamalarını sağlamak amacıyla tasarlanmıştır.
+                    </h6>
+                    <h6 class="about-text-2">
+                        Hazırlayanlar
+                    </h6>
+                    <div class="col-lg-12">
+                        <img class="about-developer-eren" src="{{asset('assets/img/hakkindaEren.svg')}}"/>
+                    </div>
+                    <div class="col-lg-12">
+                        <img class="about-developer-veysel" src="{{asset('assets/img/hakkindaVeysel.svg')}}"/>
+                    </div>
+                    <div class="col-lg-12 about-text-3">
+                        © 2023
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-<!-- Jquery ve bootstrap js eklentisi -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/dropdownMenu.js"></script>
+
+<script src="{{asset('assets/js/dropdownMenu.js')}}"></script>
+<script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 </body>
 </html>

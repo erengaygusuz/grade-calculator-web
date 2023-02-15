@@ -2,6 +2,8 @@ body{
     background-color: #C4D5EE;
 }
 
+/* Home */
+
 .home-info-text-1{
     padding-top: 100px;
     font-size: 22px;
@@ -13,7 +15,7 @@ body{
     font-size: 25px;
 }
 
-.secenek{
+.option{
     width: 150px;
     height: 125px;
     margin-top: 20px;
@@ -22,7 +24,7 @@ body{
     margin-right: 10px;
 }
 
-.secenek:hover{
+.option:hover{
     width: 180px;
     height: 150px;
     margin-top: 0px;
@@ -31,3 +33,109 @@ body{
     margin-right: -5px;
     cursor:pointer;
 }
+
+/* Home */
+
+/* About */
+
+.about-grade-calculation-btn{
+    width: 35px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-position : center center;
+    background-size: 30px 30px;
+    background-color: #1B75BB;
+}
+
+.settings-btn{
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-image : url(../img/ayaraDonBtn.svg);
+    background-position : center center;
+    background-size: 30px 30px;
+    background-color: #1B75BB;
+}
+
+.three-dot{
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-image : url(../img/ucNokta.svg);
+    background-position : center center;
+    background-size: 30px 30px;
+    background-color: #1B75BB;
+}
+
+.about-title{
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 9px;
+}
+
+.about-text-1{
+    padding-top: 90px;
+    font-size: 18px;
+}
+
+.about-text-2{
+    padding-top: 70px;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.about-text-3{
+    padding-top: 90px;
+    font-size: 15px;
+}
+
+.about-developer-eren{
+    width: 200px;
+    height: 80px;
+}
+
+.about-developer-veysel{
+    width: 200px;
+    height: 80px;
+}
+
+.dropbtn {
+    background-color: #1B75BB;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #286090;
+}
+
+.dropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-top: 40px;
+    display: none;
+    position: absolute;
+    background-color: #286090;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.show {display: block;}
+
+/* About */

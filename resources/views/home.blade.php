@@ -18,7 +18,6 @@ include 'netting/secimeGit.php';*/
     <!DOCTYPE html>
 <html lang="tr">
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,9 +28,6 @@ include 'netting/secimeGit.php';*/
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
 
     <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
-
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 <body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
@@ -62,19 +58,19 @@ include 'netting/secimeGit.php';*/
 
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="secenek" src="{{asset('assets/img/secenek1.svg')}}"/></a>
+            <a><img class="option" src="{{asset('assets/img/secenek1.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="secenek" src="{{asset('assets/img/secenek2.svg')}}"/></a>
+            <a><img class="option" src="{{asset('assets/img/secenek2.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="secenek" src="{{asset('assets/img/secenek3.svg')}}"/></a>
+            <a><img class="option" src="{{asset('assets/img/secenek3.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="secenek" src="{{asset('assets/img/secenek4.svg')}}"/></a>
+            <a><img class="option" src="{{asset('assets/img/secenek4.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="secenek" src="{{asset('assets/img/secenek5.svg')}}"/></a>
+            <a><img class="option" src="{{asset('assets/img/secenek5.svg')}}"/></a>
         </div>
         <div class="col-lg-1">
 
