@@ -34,9 +34,16 @@ include 'netting/secimeGit.php';*/
     <div class="navbar-brand mx-auto" style="padding-left: 40px;" href="#">
         <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
     </div>
-    <a class="float-end" href="#">
-        <img class="img-fluid me-md-1" width="40" height="40" src="{{asset('assets/img/cikisBtn.svg')}}" alt="">
+
+    <a class="float-end" href="{{ route('logout') }}"
+       onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+            <img class="img-fluid me-md-1" width="40" height="40" src="{{asset('assets/img/cikisBtn.svg')}}" alt="">
     </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
 </nav>
 <div class="container">
     <div class="row">
