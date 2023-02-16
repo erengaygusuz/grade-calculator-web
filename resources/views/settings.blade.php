@@ -131,7 +131,7 @@ if(isset($_POST['varsayilan']))
 </head>
 <body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <a class="float-start" href="{{url('/option')}}">
+    <a class="float-start" href="{{url('/option?type='.$_GET["type"])}}">
         <img class="about-grade-calculation-btn" style="margin-left: 10px;" src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
     </a>
     <div class="navbar-brand mx-auto" href="#">
@@ -141,11 +141,11 @@ if(isset($_POST['varsayilan']))
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings')}}">
+                <a href="{{url('/settings?type='.$_GET["type"])}}">
                     <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="{{url('/about')}}">
+                <a href="{{url('/about?type='.$_GET["type"])}}">
                     <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Hakkında
                 </a>

@@ -38,12 +38,12 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings')}}">
+                <a href="{{url('/settings?type='.$_GET["type"])}}">
                     <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px"
                          style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="{{url('/about')}}">
+                <a href="{{url('/about?type='.$_GET["type"])}}">
                     <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px"
                          style="margin-right: 27px;">
                     Hakkında
