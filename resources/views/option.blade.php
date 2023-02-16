@@ -6,8 +6,10 @@ $levels = array(
     array("Genel", "Pro", "A", "B", "C"),
     array("Genel", "A", "B", "C", "D"),
     array("Genel", "Pro", "A", "B", "C", "D"));
-?>
 
+$levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
+
+?>
     <!DOCTYPE html>
 
 <html lang="tr">
@@ -143,7 +145,7 @@ $levels = array(
                             <div class="kur-not">
                                 <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
                                 <div class="kur-not-ortala" id="sonucA">
-                                        <?php /*echo sprintf("%.1f", $ortA); */ ?>
+                                        <?php echo sprintf("%.1f", 85.346); ?>
                                 </div>
                             </div>
                             <button type="submit" name="hesapla-1-2" id="hesaplaA" class="btn hesapla-butonu-arkaplan">
@@ -152,48 +154,44 @@ $levels = array(
                         </div>
                     </div>
                         <?php
-                        /*for ($j=0; $j < 5; $j++)
+                        for ($k=0; $k < 5; $k++)
                         {
-                           */ ?>
-                    <div class="label-a" style="margin-top: 0px;">
-                            <?php /*echo $aLbl[$j]; */ ?>
+
+                        ?>
+                    <div class="label-a mt-3 mb-1">
+                            <?php echo $levelItems[$k]; ?>
                     </div>
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="card card-primary" style="border-radius: 10px;">
                             <div class="card-body">
-                                <div class="row">
-                                    <center>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
-                                             style="margin: 0px; padding: 0px;"></div>
+                                <div class="row text-center">
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
                                             <?php
-                                            /*for ($i=0; $i < 5; $i++)
+                                            for ($l=0; $l < 5; $l++)
                                             {
-                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='aNot-{$j}-{$i}' name='aNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $aNotAl[$j][$i] . "'></div>";
-                                            }*/
+                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'>
+                                                <input type='text' id='aNot-{$k}-{$l}' name='aNot-{$k}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
+                                            }
                                             ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
-                                             style="margin: 0px; padding: 0px;"></div>
-                                    </center>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
                                 </div>
-                                <div class="row" style="margin-top: 15px;">
-                                    <center>
+                                <div class="row text-center">
                                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
                                              style="margin: 0px; padding: 0px;"></div>
                                             <?php
-                                            /*for ($i=5; $i < 10; $i++)
+                                            for ($l=5; $l < 10; $l++)
                                             {
-                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='aNot-{$j}-{$i}' name='aNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $aNotAl[$j][$i] . "'></div>";
-                                            }*/
+                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'>
+                                                <input type='text' id='aNot-{$k}-{$l}' name='aNot-{$k}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
+                                            }
                                             ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
-                                             style="margin: 0px; padding: 0px;"></div>
-                                    </center>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                         <?php
-                        /*}*/
+                        }
                         ?>
                 </form>
             </div>
