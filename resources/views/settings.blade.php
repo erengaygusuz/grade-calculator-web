@@ -131,33 +131,32 @@ if(isset($_POST['varsayilan']))
 </head>
 <body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <a class="float-start" href="#">
-        <img class="about-grade-calculation-btn" style="margin-left: 10px;"
-             src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
+    <a class="float-start" href="{{url('/option')}}">
+        <img class="about-grade-calculation-btn" style="margin-left: 10px;" src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
     </a>
     <div class="navbar-brand mx-auto" href="#">
         <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
     </div>
-    <a class="float-end" href="#">
+    <a class="float-end">
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="ayar.php">
-                    <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px"
-                         style="margin-right: 27px;">
+                <a href="{{url('/settings')}}">
+                    <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="hakkinda.php">
-                    <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px"
-                         style="margin-right: 27px;">
+                <a href="{{url('/about')}}">
+                    <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Hakkında
                 </a>
-                <form action="" method="POST">
-                    <a href="netting/cikis.php">
-                        <img src="{{asset('assets/img/cikisBtn.svg')}}" width="20px" height="20px"
-                             style="margin-right: 27px;">
-                        Çıkış
-                    </a>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    <img width="20" height="20" src="{{asset('assets/img/cikisBtn.svg')}}" alt="" style="margin-right: 27px;">
+                    Çıkış
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
                 </form>
             </div>
         </div>

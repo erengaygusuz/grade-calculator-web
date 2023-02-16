@@ -62,19 +62,19 @@ include 'netting/secimeGit.php';*/
 
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="option" src="{{asset('assets/img/secenek1.svg')}}"/></a>
+            <a href="{{url('/option')}}"><img class="option" src="{{asset('assets/img/secenek1.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="option" src="{{asset('assets/img/secenek2.svg')}}"/></a>
+            <a href="{{url('/option')}}"><img class="option" src="{{asset('assets/img/secenek2.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="option" src="{{asset('assets/img/secenek3.svg')}}"/></a>
+            <a href="{{url('/option')}}"><img class="option" src="{{asset('assets/img/secenek3.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="option" src="{{asset('assets/img/secenek4.svg')}}"/></a>
+            <a href="{{url('/option')}}"><img class="option" src="{{asset('assets/img/secenek4.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a><img class="option" src="{{asset('assets/img/secenek5.svg')}}"/></a>
+            <a href="{{url('/option')}}"><img class="option" src="{{asset('assets/img/secenek5.svg')}}"/></a>
         </div>
         <div class="col-lg-1">
 
