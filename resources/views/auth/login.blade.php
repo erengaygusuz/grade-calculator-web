@@ -29,7 +29,7 @@ include 'netting/kayitOl.php';
 
     <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
 </head>
-<body onload="load()">
+<body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
     <div class="navbar-brand mx-auto" style="padding-left: 40px;" href="#">
         <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
@@ -41,11 +41,62 @@ include 'netting/kayitOl.php';
 
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-12 text-center">
-                <table class="table">
-                    <form method="POST" action="{{ route('login') }}">
+                <table id="loginForm" style="display: table" class="table">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <tbody>
+                            <tr>
+                                <td style="border: none; ">
+                                    <h5 class="text-start">Kullanıcı Adı:</h5>
+                                </td>
+                                <td style="border: none; ">
+                                    <input id="email" type="email" size="12" class="form-control input-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none; ">
+                                    <h5 class="text-start">Şifre:</h5>
+                                </td>
+                                <td style="border: none; ">
+                                    <input id="password" type="password" size="12" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">
+                                    <h5 class="text-start">Kayıt Ol:</h5>
+                                </td>
+                                <td style="border: none; ">
+                                    <label class="switch">
+                                        <input type="checkbox" id="loginCheck" onclick="myFunction1()">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr id="processBtn" style="height: 100px;">
+                                <td colspan="2" style="border: none;" >
+                                    <button class="btn btn-lg text-center" type="submit" name="giris" style="background-color: #1B75BB; color: white">Giriş Yap</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
+                </table>
+                <table id="registerForm" style="display: none" class="table">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <tbody>
-                        <tr id="kayitOl1" style="display: none;">
+                        <tr id="kayitOl1">
                             <td style="border: none; ">
                                 <h5 class="text-start">Ad:</h5>
                             </td>
@@ -53,7 +104,7 @@ include 'netting/kayitOl.php';
                                 <input id="ad" class="form-control input-lg" type="text" name="ad" size="12" required>
                             </td>
                         </tr>
-                        <tr id="kayitOl2" style="display: none;">
+                        <tr id="kayitOl2">
                             <td style="border: none; ">
                                 <h5 class="text-start">Soyad:</h5>
                             </td>
@@ -90,24 +141,19 @@ include 'netting/kayitOl.php';
                             </td>
                         </tr>
                         <tr>
-                            <td style="border: none; ">
+                            <td style="border: none;">
                                 <h5 class="text-start">Kayıt Ol:</h5>
                             </td>
                             <td style="border: none; ">
                                 <label class="switch">
-                                    <input type="checkbox" id="myCheck1" onclick="myFunction1()">
+                                    <input type="checkbox" id="registerCheck" onclick="myFunction1()">
                                     <span class="slider round"></span>
                                 </label>
                             </td>
                         </tr>
-                        <tr id="girisBtn" style="height: 100px;">
+                        <tr id="processBtn" style="height: 100px;">
                             <td colspan="2" style="border: none;" >
-                                <button class="btn btn-primary btn-lg text-center" type="submit" name="giris" >Giriş Yap</button>
-                            </td>
-                        </tr>
-                        <tr id="kayitBtn" style="height: 100px; display: none;">
-                            <td colspan="2" style="border: none;" >
-                                <button class="btn btn-primary btn-lg text-center" type="submit" name="kayit" >Kayıt Ol</button>
+                                <button class="btn btn-lg text-center" type="submit" name="giris" style="background-color: #1B75BB; color: white">Kayıt Ol</button>
                             </td>
                         </tr>
                         </tbody>
@@ -142,41 +188,26 @@ include 'netting/kayitOl.php';
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/kullanici-adi-kontrolu.js')}}"></script>
 <script>
-    function load(){
-        var ad = document.getElementById("ad");
-        var soyad = document.getElementById("soyad");
-
-        ad.required = false;
-        soyad.required = false;
-    }
-
     function myFunction1() {
-        var checkBoxYes = document.getElementById("myCheck1");
-        var ad = document.getElementById("ad");
-        var soyad = document.getElementById("soyad");
-        var kayit1 = document.getElementById("kayitOl1");
-        var kayit2 = document.getElementById("kayitOl2");
-        var kayitBtn = document.getElementById("kayitBtn");
-        var girisBtn = document.getElementById("girisBtn");
+        var loginCheck = document.getElementById("loginCheck");
+        var registerCheck = document.getElementById("registerCheck");
 
-        if (checkBoxYes.checked == true)
+        var loginForm = document.getElementById("loginForm");
+        var registerForm = document.getElementById("registerForm");
+
+        if (loginCheck.checked == true)
         {
-            ad.required = true;
-            soyad.required = true;
-            kayit1.style.display = "";
-            kayit2.style.display = "";
-            kayitBtn.style.display = "";
-            girisBtn.style.display = "none";
+            registerCheck.checked = true;
+            loginCheck.checked = false;
+
+            loginForm.style.display = "none";
+            registerForm.style.display = "table";
         }
 
-        else
+        if (registerCheck.checked == false)
         {
-            ad.required = false;
-            soyad.required = false;
-            kayit1.style.display = "none";
-            kayit2.style.display = "none";
-            kayitBtn.style.display = "none";
-            girisBtn.style.display = "";
+            loginForm.style.display = "table";
+            registerForm.style.display = "none";
         }
     }
 </script>
