@@ -1,6 +1,6 @@
 <?php
 
-$levels = array(
+$options = array(
     array("Genel", "Pro", "A"),
     array("Genel", "Pro", "A", "B"),
     array("Genel", "Pro", "A", "B", "C"),
@@ -66,7 +66,7 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
     <div class="col-12">
         <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
             <?php for ($j = 0;
-                       $j < count($levels[$_GET["type"]]);
+                       $j < count($options[$_GET["type"]]);
                        $j++)
             {
                 ?>
@@ -74,7 +74,7 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
                     data-bs-toggle="tab"
                     data-bs-target="#menu{{($j + 1)}}-tab-pane"
                     type="button" role="tab" aria-controls="menu{{($j + 1)}}"
-                    aria-selected="true">{{$levels[$_GET["type"]][$j]}}
+                    aria-selected="true">{{$options[$_GET["type"]][$j]}}
             </button>
                 <?php
             }
@@ -130,7 +130,7 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
                 </div>
             </div>
             <?php for ($j = 1;
-                       $j < count($levels[$_GET["type"]]);
+                       $j < count($options[$_GET["type"]]);
                        $j++)
             {
                 ?>
@@ -140,7 +140,7 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
                         <div class="col-12 text-center">
                             <div class="kur-label">
                                 <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                <div class="kur-label-ortala">{{$levels[$_GET["type"]][$j]}} kuru</br>ortalaması</div>
+                                <div class="kur-label-ortala">{{$options[$_GET["type"]][$j]}} kuru</br>ortalaması</div>
                             </div>
                             <div class="kur-not">
                                 <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
