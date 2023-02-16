@@ -101,7 +101,13 @@ include 'netting/kayitOl.php';
                                 <h5 class="text-start">Ad:</h5>
                             </td>
                             <td style="border: none; ">
-                                <input id="ad" class="form-control input-lg" type="text" name="ad" size="12" required>
+                                <input id="name" size="12" type="text" class="form-control input-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </td>
                         </tr>
                         <tr id="kayitOl2">
@@ -109,7 +115,13 @@ include 'netting/kayitOl.php';
                                 <h5 class="text-start">Soyad:</h5>
                             </td>
                             <td style="border: none; ">
-                                <input id="soyad" class="form-control input-lg" type="text" name="soyad" size="12" required>
+                                <input id="surname" size="12" type="text" class="form-control input-lg @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+
+                                @error('surname')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </td>
                         </tr>
                         <tr>
@@ -117,7 +129,7 @@ include 'netting/kayitOl.php';
                                 <h5 class="text-start">Kullanıcı Adı:</h5>
                             </td>
                             <td style="border: none; ">
-                                <input id="email" type="email" size="12" class="form-control input-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" size="12" class="form-control input-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -131,13 +143,21 @@ include 'netting/kayitOl.php';
                                 <h5 class="text-start">Şifre:</h5>
                             </td>
                             <td style="border: none; ">
-                                <input id="password" type="password" size="12" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" size="12" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; ">
+                                <h5 class="text-start">Şifre Tekrar:</h5>
+                            </td>
+                            <td style="border: none; ">
+                                <input id="password-confirm" type="password" size="12" class="form-control input-lg" name="password_confirmation" required autocomplete="new-password">
                             </td>
                         </tr>
                         <tr>
