@@ -1,14 +1,11 @@
 <?php
-/*
-ob_start();
-session_start();
 
-include 'netting/baglan.php';
-include 'netting/kullaniciCek.php';
-include 'netting/ayarCek.php';
-include 'netting/secenek1Hesapla.php';
-include 'netting/bilgiCek.php';
-*/
+$levels = array(
+    array("Genel", "Pro", "A"),
+    array("Genel", "Pro", "A", "B"),
+    array("Genel", "Pro", "A", "B", "C"),
+    array("Genel", "A", "B", "C", "D"),
+    array("Genel", "Pro", "A", "B", "C", "D"));
 ?>
 
     <!DOCTYPE html>
@@ -29,7 +26,8 @@ include 'netting/bilgiCek.php';
 <body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
     <a class="float-start" href="{{url('/home')}}">
-        <img class="about-grade-calculation-btn" style="margin-left: 10px;" src="{{asset('assets/img/anaSayfaBtn.svg')}}" alt="">
+        <img class="about-grade-calculation-btn" style="margin-left: 10px;"
+             src="{{asset('assets/img/anaSayfaBtn.svg')}}" alt="">
     </a>
     <div class="navbar-brand mx-auto" href="#">
         <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
@@ -39,17 +37,20 @@ include 'netting/bilgiCek.php';
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="{{url('/settings')}}">
-                    <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                    <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px"
+                         style="margin-right: 27px;">
                     Ayarlar
                 </a>
                 <a href="{{url('/about')}}">
-                    <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                    <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px"
+                         style="margin-right: 27px;">
                     Hakkında
                 </a>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                    <img width="20" height="20" src="{{asset('assets/img/cikisBtn.svg')}}" alt="" style="margin-right: 27px;">
+                    <img width="20" height="20" src="{{asset('assets/img/cikisBtn.svg')}}" alt=""
+                         style="margin-right: 27px;">
                     Çıkış
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -62,9 +63,20 @@ include 'netting/bilgiCek.php';
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
     <div class="col-12">
         <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
-            <button class="nav-link grade-tab-item active" id="menu1" data-bs-toggle="tab" data-bs-target="#menu1-tab-pane" type="button" role="tab" aria-controls="menu1" aria-selected="true">Genel</button>
-            <button class="nav-link grade-tab-item" id="menu2" data-bs-toggle="tab" data-bs-target="#menu2-tab-pane" type="button" role="tab" aria-controls="menu2" aria-selected="false">Pro</button>
-            <button class="nav-link grade-tab-item" id="menu3" data-bs-toggle="tab" data-bs-target="#menu3-tab-pane" type="button" role="tab" aria-controls="menu3" aria-selected="false">A</button>
+            <?php for ($j = 0;
+                       $j < count($levels[$_GET["type"]]);
+                       $j++)
+            {
+                ?>
+            <button class="nav-link grade-tab-item {{$j == 0 ? "active":"" }}" id="menu{{($j + 1)}}"
+                    data-bs-toggle="tab"
+                    data-bs-target="#menu{{($j + 1)}}-tab-pane"
+                    type="button" role="tab" aria-controls="menu{{($j + 1)}}"
+                    aria-selected="true">{{$levels[$_GET["type"]][$j]}}
+            </button>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </nav>
@@ -72,7 +84,8 @@ include 'netting/bilgiCek.php';
 <div class="container">
     <div class="row">
         <div class="tab-content mt-5" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="menu1-tab-pane" role="tabpanel" aria-labelledby="menu1" tabindex="0">
+            <div class="tab-pane fade show active" id="menu1-tab-pane" role="tabpanel" aria-labelledby="menu1"
+                 tabindex="0">
                 <div class="row">
                     <div class="card card-primary" style="padding: 30px 30px 10px 30px; border-radius: 10px;">
                         <div class="card-group">
@@ -81,32 +94,32 @@ include 'netting/bilgiCek.php';
                                 <!-- Ad ve soyad bilgisi -->
                                 <tr>
                                     <td>Ad ve Soyad:</td>
-                                    <td><?php /*echo $ad . " " . $soyad; */?></td>
+                                    <td><?php /*echo $ad . " " . $soyad; */ ?></td>
                                 </tr>
                                 <!-- Kullanıcı adı bilgisi -->
                                 <tr>
                                     <td>Kullanıcı Adı:</td>
-                                    <td><?php /*echo $kulAdi */?></td>
+                                    <td><?php /*echo $kulAdi */ ?></td>
                                 </tr>
                                 <!-- Genel ortalama bilgisi -->
                                 <tr>
                                     <td>Genel Ortalama:</td>
-                                    <td id="genelOrt"><?php /*echo sprintf("%.1f", $ortGenel); */?></td>
+                                    <td id="genelOrt"><?php /*echo sprintf("%.1f", $ortGenel); */ ?></td>
                                 </tr>
                                 <!-- Pro kuru ortalamsı bilgisi -->
                                 <tr>
                                     <td>Pro Kuru Ortalaması:</td>
-                                    <td id="genelProNot"><?php /*echo sprintf("%.1f", $ortPro); */?></td>
+                                    <td id="genelProNot"><?php /*echo sprintf("%.1f", $ortPro); */ ?></td>
                                 </tr>
                                 <!-- A kuru ortalaması bilgisi -->
                                 <tr>
                                     <td>A Kuru Ortalaması:</td>
-                                    <td id="genelNot"><?php /*echo sprintf("%.1f", $ortA); */?></td>
+                                    <td id="genelNot"><?php /*echo sprintf("%.1f", $ortA); */ ?></td>
                                 </tr>
                                 <!-- Durum bilgisi -->
                                 <tr>
                                     <td>Durum:</td>
-                                    <td id="durum"><?php /*echo $durum */?></td>
+                                    <td id="durum"><?php /*echo $durum */ ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -114,124 +127,79 @@ include 'netting/bilgiCek.php';
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="menu2-tab-pane" role="tabpanel" aria-labelledby="menu2" tabindex="0">
+            <?php for ($j = 1;
+                       $j < count($levels[$_GET["type"]]);
+                       $j++)
+            {
+                ?>
+            <div class="tab-pane fade" id="menu{{($j + 1)}}-tab-pane" role="tabpanel" aria-labelledby="menu{{($j + 1)}}" tabindex="0">
                 <form action="" method="POST">
                     <div class="row">
                         <div class="col-12 text-center">
-                                <div class="kur-label">
-                                    <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                    <div class="kur-label-ortala">Pro kuru</br>ortalaması</div>
-                                </div>
-                                <div class="kur-not">
-                                    <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
-                                    <div class="kur-not-ortala" id="sonucPro">
-                                        <?php /*echo sprintf("%.1f", $ortPro); */?>
-                                    </div>
-                                </div>
-                                <button type="submit" name="hesapla-1-1" id="hesaplaPro" class="btn hesapla-butonu-arkaplan">Hesapla</button>
-                        </div>
-                    </div>
-                    <?php
-                    /*for ($j=0; $j < 5; $j++)
-                    {
-                        */?>
-                    <div class="label-pro" style="margin-top: 0px;">
-                        <?php /*echo $proLbl[$j];*/ ?>
-                    </div>
-                    <div class="row">
-                        <div class="card card-primary" style="border-radius: 10px;">
-                            <div class="card-body">
-                                <div class="row">
-                                    <center>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                        <?php
-                                        /*for ($i=0; $i < 5; $i++)
-                                        {
-                                            echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='proNot-{$j}-{$i}' name='proNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $proNotAl[$j][$i] . "'></div>";
-                                        }*/
-                                        ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                    </center>
-                                </div>
-                                <div class="row" style="margin-top: 15px;">
-                                    <center>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                        <?php
-                                        /*for ($i=5; $i < 10; $i++)
-                                        {
-                                            echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='proNot-{$j}-{$i}' name='proNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $proNotAl[$j][$i] . "'></div>";
-                                        }*/
-                                        ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                    </center>
+                            <div class="kur-label">
+                                <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
+                                <div class="kur-label-ortala">{{$levels[$_GET["type"]][$j]}} kuru</br>ortalaması</div>
+                            </div>
+                            <div class="kur-not">
+                                <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
+                                <div class="kur-not-ortala" id="sonucA">
+                                        <?php /*echo sprintf("%.1f", $ortA); */ ?>
                                 </div>
                             </div>
+                            <button type="submit" name="hesapla-1-2" id="hesaplaA" class="btn hesapla-butonu-arkaplan">
+                                Hesapla
+                            </button>
                         </div>
                     </div>
-                    <?php
-                    /*}*/
-                    ?>
-                </form>
-            </div>
-            <div class="tab-pane fade" id="menu3-tab-pane" role="tabpanel" aria-labelledby="menu3" tabindex="0">
-                <form action="" method="POST">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                                <div class="kur-label">
-                                    <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                    <div class="kur-label-ortala">A kuru</br>ortalaması</div>
-                                </div>
-                                <div class="kur-not">
-                                    <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
-                                    <div class="kur-not-ortala" id="sonucA">
-                                        <?php /*echo sprintf("%.1f", $ortA); */?>
-                                    </div>
-                                </div>
-                                <button type="submit" name="hesapla-1-2" id="hesaplaA" class="btn hesapla-butonu-arkaplan">Hesapla</button>
-                        </div>
-                    </div>
-                    <?php
-                    /*for ($j=0; $j < 5; $j++)
-                    {
-                       */ ?>
+                        <?php
+                        /*for ($j=0; $j < 5; $j++)
+                        {
+                           */ ?>
                     <div class="label-a" style="margin-top: 0px;">
-                        <?php /*echo $aLbl[$j]; */?>
+                            <?php /*echo $aLbl[$j]; */ ?>
                     </div>
                     <div class="row">
                         <div class="card card-primary" style="border-radius: 10px;">
                             <div class="card-body">
                                 <div class="row">
                                     <center>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                        <?php
-                                        /*for ($i=0; $i < 5; $i++)
-                                        {
-                                            echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='aNot-{$j}-{$i}' name='aNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $aNotAl[$j][$i] . "'></div>";
-                                        }*/
-                                        ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                                             style="margin: 0px; padding: 0px;"></div>
+                                            <?php
+                                            /*for ($i=0; $i < 5; $i++)
+                                            {
+                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='aNot-{$j}-{$i}' name='aNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $aNotAl[$j][$i] . "'></div>";
+                                            }*/
+                                            ?>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                                             style="margin: 0px; padding: 0px;"></div>
                                     </center>
                                 </div>
                                 <div class="row" style="margin-top: 15px;">
                                     <center>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                        <?php
-                                        /*for ($i=5; $i < 10; $i++)
-                                        {
-                                            echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='aNot-{$j}-{$i}' name='aNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $aNotAl[$j][$i] . "'></div>";
-                                        }*/
-                                        ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                                             style="margin: 0px; padding: 0px;"></div>
+                                            <?php
+                                            /*for ($i=5; $i < 10; $i++)
+                                            {
+                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'><input type='text' id='aNot-{$j}-{$i}' name='aNot-{$j}-{$i}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . $aNotAl[$j][$i] . "'></div>";
+                                            }*/
+                                            ?>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                                             style="margin: 0px; padding: 0px;"></div>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php
-                    /*}*/
-                    ?>
+                        <?php
+                        /*}*/
+                        ?>
                 </form>
             </div>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>
