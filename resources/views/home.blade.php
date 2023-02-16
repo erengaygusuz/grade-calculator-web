@@ -49,10 +49,7 @@ include 'netting/secimeGit.php';*/
     <div class="row">
         <div class="home-info-text-1 text-center">
             <h3 class="home-info-text-2">
-                <?php
-                echo "Hoşgeldiniz " . "<b>" . /*$ad . " " . $soyad .*/
-                    "</b>";
-                ?>
+                Hoşgeldiniz <b>{{ Auth::user()->name }} {{ Auth::user()->surname }}</b>
             </h3>
             </br>
             Notlarınızı hesaplamak için hazırlık okulunda aldığınız kurları seçmeniz gerekiyor.
