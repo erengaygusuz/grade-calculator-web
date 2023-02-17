@@ -1,33 +1,22 @@
-    <!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('title')
+    Ana Sayfa
+@endsection
 
-    <title>Ana Sayfa</title>
-
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
-
-    <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
-</head>
-<body>
-<nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <div class="navbar-brand mx-auto" style="padding-left: 40px;" href="#">
-        <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
-    </div>
-
+@section('navbar.right.item')
     <a class="float-end" href="{{ route('logout') }}"
        onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-            <img class="img-fluid me-md-1" width="40" height="40" src="{{asset('assets/img/cikisBtn.svg')}}" alt="">
+        <img class="img-fluid me-md-1" width="40" height="40" src="{{asset('assets/img/cikisBtn.svg')}}" alt="">
     </a>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
-</nav>
+@endsection
+
+@section('content')
+
 <div class="container">
     <div class="row">
         <div class="home-info-text-1 text-center">
@@ -65,8 +54,4 @@
     </div>
 </div>
 
-<script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
-<script src="{{asset('assets/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-</body>
-</html>
+@endsection

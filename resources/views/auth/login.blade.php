@@ -1,40 +1,10 @@
-<?php
-/*
-ob_start();
-session_start();
+@extends('layouts.app')
+@section('title')
+    Giriş
+@endsection
 
-$modalDanger = false;
+@section('content')
 
-// Veritabanı bağlantı kodlarının projeye dahil edilmesi
-include 'netting/baglan.php';
-
-include 'netting/girisYap.php';
-
-include 'netting/kayitOl.php';
-*/
-?>
-
-    <!DOCTYPE html>
-
-<html lang="tr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Giriş</title>
-
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
-
-    <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
-</head>
-<body>
-<nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <div class="navbar-brand mx-auto" style="padding-left: 40px;" href="#">
-        <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
-    </div>
-</nav>
 <div class="container">
     <div class="row mt-5">
         <div class="col-lg-3">
@@ -203,9 +173,6 @@ include 'netting/kayitOl.php';
     </div>
 </div>
 
-<script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
-<script src="{{asset('assets/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/kullanici-adi-kontrolu.js')}}"></script>
 <script>
     function myFunction1() {
@@ -231,17 +198,5 @@ include 'netting/kayitOl.php';
         }
     }
 </script>
-<?php
-/*if($modalDanger == true)
-{
-    echo"
-  <script>
-    $(document).ready(function(){
-      $('#modal-danger').modal();
-      });
-  </script>";
 
-}*/
-?>
-</body>
-</html>
+@endsection

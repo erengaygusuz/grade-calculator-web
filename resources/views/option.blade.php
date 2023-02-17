@@ -3,79 +3,51 @@
 $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
 ?>
-    <!DOCTYPE html>
 
-<html lang="tr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Seçenek 1</title>
+@extends('layouts.app')
+@section('title')
+    Seçenek - {{$optionVal}}
+@endsection
 
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
-
-    <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
-</head>
-<body>
-<nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
+@section('navbar.left.item')
     <a class="float-start" href="{{url('/home')}}">
         <img class="about-grade-calculation-btn" style="margin-left: 10px;"
              src="{{asset('assets/img/anaSayfaBtn.svg')}}" alt="">
     </a>
-    <div class="navbar-brand mx-auto" href="#">
-        <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
-    </div>
-    <a class="float-end">
-        <div class="dropdown">
-            <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings/'.$optionVal)}}">
-                    <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px"
-                         style="margin-right: 27px;">
-                    Ayarlar
-                </a>
-                <a href="{{url('/about/'.$optionVal)}}">
-                    <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px"
-                         style="margin-right: 27px;">
-                    Hakkında
-                </a>
-                <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                    <img width="20" height="20" src="{{asset('assets/img/cikisBtn.svg')}}" alt=""
-                         style="margin-right: 27px;">
-                    Çıkış
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                    @csrf
-                </form>
+@endsection
+
+@section('navbar.right.item')
+
+    @include('layouts.inc.navbar-right-context-menu')
+
+@endsection
+
+@section('second-navbar')
+    <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
+        <div class="col-12">
+            <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
+                <button class="nav-link grade-tab-item active" id="menu1"
+                        data-bs-toggle="tab"
+                        data-bs-target="#menu1-tab-pane"
+                        type="button" role="tab" aria-controls="menu1"
+                        aria-selected="true">Genel
+                </button>
+                @foreach($optionLevels as $optionLevel)
+                    <span></span>
+                    <button class="nav-link grade-tab-item" id="menu{{$optionLevel->level->id + 1}}"
+                            data-bs-toggle="tab"
+                            data-bs-target="#menu{{$optionLevel->level->id + 1}}-tab-pane"
+                            type="button" role="tab" aria-controls="menu{{$optionLevel->level->id + 1}}"
+                            aria-selected="true">{{$optionLevel->level->name}}
+                    </button>
+                @endforeach
             </div>
         </div>
-    </a>
-</nav>
-<nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <div class="col-12">
-        <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
-            <button class="nav-link grade-tab-item active" id="menu1"
-                    data-bs-toggle="tab"
-                    data-bs-target="#menu1-tab-pane"
-                    type="button" role="tab" aria-controls="menu1"
-                    aria-selected="true">Genel
-            </button>
-            @foreach($optionLevels as $optionLevel)
-                <span></span>
-                <button class="nav-link grade-tab-item" id="menu{{$optionLevel->level->id + 1}}"
-                        data-bs-toggle="tab"
-                        data-bs-target="#menu{{$optionLevel->level->id + 1}}-tab-pane"
-                        type="button" role="tab" aria-controls="menu{{$optionLevel->level->id + 1}}"
-                        aria-selected="true">{{$optionLevel->level->name}}
-                </button>
-            @endforeach
-        </div>
-    </div>
-</nav>
+    </nav>
+@endsection
+
+@section('content')
 
 <div class="container">
     <div class="row">
@@ -185,8 +157,5 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 </div>
 
 <script src="{{asset('assets/js/dropdownMenu.js')}}"></script>
-<script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
-<script src="{{asset('assets/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-</body>
-</html>
+
+@endsection
