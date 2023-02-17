@@ -1,36 +1,7 @@
 <?php
-/*
-ob_start();
-session_start();
 
-if (isset($_POST['not-geri']))
-{
-    if($_SESSION['secim'] == 1)
-    {
-        header('Location: secenek1.php');
-    }
+$optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
-    else if($_SESSION['secim'] == 2)
-    {
-        header('Location: secenek2.php');
-    }
-
-    else if($_SESSION['secim'] == 3)
-    {
-        header('Location: secenek3.php');
-    }
-
-    else if($_SESSION['secim'] == 4)
-    {
-        header('Location: secenek4.php');
-    }
-
-    else
-    {
-        header('Location: secenek5.php');
-    }
-}
-*/
 ?>
 
     <!DOCTYPE html>
@@ -50,7 +21,7 @@ if (isset($_POST['not-geri']))
 </head>
 <body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <a class="float-start" href="{{url('/option?type='.$_GET["type"])}}">
+    <a class="float-start" href="{{url('/option/'.$optionVal)}}">
         <img class="about-grade-calculation-btn" style="margin-left: 10px;" src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
     </a>
     <div class="navbar-brand mx-auto" href="#">
@@ -60,11 +31,11 @@ if (isset($_POST['not-geri']))
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings?type='.$_GET["type"])}}">
+                <a href="{{url('/settings/'.$optionVal)}}">
                     <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="{{url('/about?type='.$_GET["type"])}}">
+                <a href="{{url('/about/'.$optionVal)}}">
                     <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Hakkında
                 </a>

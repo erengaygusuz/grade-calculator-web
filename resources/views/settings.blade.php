@@ -1,116 +1,7 @@
 <?php
-/*
-ob_start();
-session_start();
 
-include 'netting/baglan.php';
+$optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
-if (isset($_POST['not-geri']))
-{
-    if($_SESSION['secim'] == 1)
-    {
-        header('Location: secenek1.php');
-    }
-
-    else if($_SESSION['secim'] == 2)
-    {
-        header('Location: secenek2.php');
-    }
-
-    else if($_SESSION['secim'] == 3)
-    {
-        header('Location: secenek3.php');
-    }
-
-    else if($_SESSION['secim'] == 4)
-    {
-        header('Location: secenek4.php');
-    }
-
-    else
-    {
-        header('Location: secenek5.php');
-    }
-}
-
-$q;
-$w;
-$m_s;
-$h;
-
-$kAdi = $_SESSION['kullaniciAdi'];
-
-$kul = "SELECT * FROM Kullanici WHERE kullaniciAdi = '$kAdi'";
-$result = $conn->query($kul);
-
-if ($result->num_rows > 0)
-{
-    while($row = $result->fetch_assoc())
-    {
-        $kId = $row["kullaniciId"];
-    }
-}
-
-$ayarCek = "SELECT * FROM Kullanici INNER JOIN Ayar ON Kullanici.kullaniciId = Ayar.kullaniciId WHERE Kullanici.kullaniciId = '$kId'";
-$result = $conn->query($ayarCek);
-
-if ($result->num_rows > 0)
-{
-    while($row = $result->fetch_assoc())
-    {
-        $q = $row["quizYuzde"];
-        $w = $row["writingYuzde"];
-        $m_s = $row["midtermYuzde"];
-        $h = $row["homeworkYuzde"];
-    }
-}
-
-// Ayar kaydetme ve varsayılana döndürme olayları
-
-$mesaj = "";
-
-if(isset($_POST['kaydet']))
-{
-    $q = $_POST['q'];
-    $w = $_POST['w'];
-    $m_s = $_POST['m_s'];
-    $h = $_POST['h'];
-
-    if(($q + $w + $m_s + $h) == 100)
-    {
-        $ayar = "UPDATE Ayar SET quizYuzde = '$q', writingYuzde = '$w', midtermYuzde = '$m_s', homeworkYuzde = '$h' WHERE kullaniciId = '$kId'";
-
-        $result = $conn->query($ayar);
-
-        if($result)
-        {
-            $mesaj = "kayitBasarili";
-        }
-    }
-
-    else
-    {
-        $mesaj = "yanlisDeger";
-    }
-}
-
-if(isset($_POST['varsayilan']))
-{
-    $q = 15;
-    $w = 10;
-    $m_s = 70;
-    $h = 5;
-
-    $ayar = "UPDATE Ayar SET quizYuzde = '$q', writingYuzde = '$w', midtermYuzde = '$m_s', homeworkYuzde = '$h' WHERE kullaniciId = '$kId'";
-
-    $result = $conn->query($ayar);
-
-    if($result)
-    {
-        $mesaj = "varsayilanDeger";
-    }
-}
-*/
 ?>
 
     <!DOCTYPE html>
@@ -131,7 +22,7 @@ if(isset($_POST['varsayilan']))
 </head>
 <body>
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
-    <a class="float-start" href="{{url('/option?type='.$_GET["type"])}}">
+    <a class="float-start" href="{{url('/option/'.$optionVal)}}">
         <img class="about-grade-calculation-btn" style="margin-left: 10px;" src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
     </a>
     <div class="navbar-brand mx-auto" href="#">
@@ -141,11 +32,11 @@ if(isset($_POST['varsayilan']))
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings?type='.$_GET["type"])}}">
+                <a href="{{url('/settings/'.$optionVal)}}">
                     <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="{{url('/about?type='.$_GET["type"])}}">
+                <a href="{{url('/about/'.$optionVal)}}">
                     <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                     Hakkında
                 </a>

@@ -1,8 +1,6 @@
 <?php
 
-$levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
-
-$val = 0;
+$optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
 ?>
     <!DOCTYPE html>
@@ -33,12 +31,12 @@ $val = 0;
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings?type='.$val)}}">
+                <a href="{{url('/settings/'.$optionVal)}}">
                     <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px"
                          style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="{{url('/about?type='.$val)}}">
+                <a href="{{url('/about/'.$optionVal)}}">
                     <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px"
                          style="margin-right: 27px;">
                     Hakkında
@@ -145,13 +143,9 @@ $val = 0;
                             </button>
                         </div>
                     </div>
-                        <?php
-                        for ($k=0; $k < 5; $k++)
-                        {
-
-                        ?>
+                    @foreach($levelItems as $levelItem)
                     <div class="label-a mt-3 mb-1">
-                            <?php echo $levelItems[$k]; ?>
+                        {{$levelItem->name}}
                     </div>
                     <div class="row mb-4">
                         <div class="card card-primary" style="border-radius: 10px;">
@@ -162,7 +156,7 @@ $val = 0;
                                             for ($l=0; $l < 5; $l++)
                                             {
                                                 echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'>
-                                                <input type='text' id='aNot-{$k}-{$l}' name='aNot-{$k}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
+                                                <input type='text' id='aNot-{{$levelItem->id}}-{$l}' name='aNot-{{$levelItem->id}}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
                                             }
                                             ?>
                                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
@@ -174,7 +168,7 @@ $val = 0;
                                             for ($l=5; $l < 10; $l++)
                                             {
                                                 echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'>
-                                                <input type='text' id='aNot-{$k}-{$l}' name='aNot-{$k}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
+                                                <input type='text' id='aNot-{{$levelItem->id}}-{$l}' name='aNot-{{$levelItem->id}}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
                                             }
                                             ?>
                                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
@@ -182,9 +176,7 @@ $val = 0;
                             </div>
                         </div>
                     </div>
-                        <?php
-                        }
-                        ?>
+                    @endforeach
                 </form>
             </div>
             @endforeach

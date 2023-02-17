@@ -19,8 +19,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function (){
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::get('settings', [App\Http\Controllers\SettingsController::class, 'index']);
-    Route::get('about', [App\Http\Controllers\AboutController::class, 'index']);
+    Route::get('settings/{option_id}', [App\Http\Controllers\SettingsController::class, 'index']);
+    Route::get('about/{option_id}', [App\Http\Controllers\AboutController::class, 'index']);
 
     Route::controller(App\Http\Controllers\OptionController::class)->group(function () {
         Route::get('/option/{option_id}', 'getLevels');

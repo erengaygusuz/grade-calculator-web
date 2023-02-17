@@ -9,7 +9,7 @@ class LevelItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'levelItem';
+    protected $table = 'level_item';
 
     protected $fillable = [
       'name',
