@@ -15,4 +15,9 @@ class OptionLevel extends Model
         'option_id',
         'level_id'
     ];
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id', 'id');
+    }
 }

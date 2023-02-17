@@ -1,13 +1,8 @@
 <?php
 
-$options = array(
-    array("Genel", "Pro", "A"),
-    array("Genel", "Pro", "A", "B"),
-    array("Genel", "Pro", "A", "B", "C"),
-    array("Genel", "A", "B", "C", "D"),
-    array("Genel", "Pro", "A", "B", "C", "D"));
-
 $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
+
+$val = 0;
 
 ?>
     <!DOCTYPE html>
@@ -38,12 +33,12 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
         <div class="dropdown">
             <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="{{url('/settings?type='.$_GET["type"])}}">
+                <a href="{{url('/settings?type='.$val)}}">
                     <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px"
                          style="margin-right: 27px;">
                     Ayarlar
                 </a>
-                <a href="{{url('/about?type='.$_GET["type"])}}">
+                <a href="{{url('/about?type='.$val)}}">
                     <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px"
                          style="margin-right: 27px;">
                     Hakkında
@@ -65,20 +60,21 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
 <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
     <div class="col-12">
         <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
-            <?php for ($j = 0;
-                       $j < count($options[$_GET["type"]]);
-                       $j++)
-            {
-                ?>
-            <button class="nav-link grade-tab-item {{$j == 0 ? "active":"" }}" id="menu{{($j + 1)}}"
+            <button class="nav-link grade-tab-item active" id="menu1"
                     data-bs-toggle="tab"
-                    data-bs-target="#menu{{($j + 1)}}-tab-pane"
-                    type="button" role="tab" aria-controls="menu{{($j + 1)}}"
-                    aria-selected="true">{{$options[$_GET["type"]][$j]}}
+                    data-bs-target="#menu1-tab-pane"
+                    type="button" role="tab" aria-controls="menu1"
+                    aria-selected="true">Genel
             </button>
-                <?php
-            }
-            ?>
+            @foreach($optionLevels as $optionLevel)
+                <span></span>
+                <button class="nav-link grade-tab-item" id="menu{{$optionLevel->level->id + 1}}"
+                        data-bs-toggle="tab"
+                        data-bs-target="#menu{{$optionLevel->level->id + 1}}-tab-pane"
+                        type="button" role="tab" aria-controls="menu{{$optionLevel->level->id + 1}}"
+                        aria-selected="true">{{$optionLevel->level->name}}
+                </button>
+            @endforeach
         </div>
     </div>
 </nav>
@@ -129,18 +125,14 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
                     </div>
                 </div>
             </div>
-            <?php for ($j = 1;
-                       $j < count($options[$_GET["type"]]);
-                       $j++)
-            {
-                ?>
-            <div class="tab-pane fade" id="menu{{($j + 1)}}-tab-pane" role="tabpanel" aria-labelledby="menu{{($j + 1)}}" tabindex="0">
+            @foreach($optionLevels as $optionLevel)
+            <div class="tab-pane fade" id="menu{{$optionLevel->level->id + 1}}-tab-pane" role="tabpanel" aria-labelledby="menu{{$optionLevel->level->id + 1}}" tabindex="0">
                 <form action="" method="POST">
                     <div class="row">
                         <div class="col-12 text-center">
                             <div class="kur-label">
                                 <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                <div class="kur-label-ortala">{{$options[$_GET["type"]][$j]}} kuru</br>ortalaması</div>
+                                <div class="kur-label-ortala">{{$optionLevel->level->name}} kuru</br>ortalaması</div>
                             </div>
                             <div class="kur-not">
                                 <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
@@ -195,9 +187,7 @@ $levelItems = array("Quiz", "Writing", "Midterm", "Speaking", "Homework");
                         ?>
                 </form>
             </div>
-                <?php
-            }
-            ?>
+            @endforeach
         </div>
     </div>
 </div>

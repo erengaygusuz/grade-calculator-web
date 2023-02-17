@@ -45,19 +45,19 @@
 
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option?type=0')}}"><img class="option" src="{{asset('assets/img/secenek1.svg')}}"/></a>
+            <a href="{{url('/option/1')}}"><img class="option" src="{{asset('assets/img/secenek1.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option?type=1')}}"><img class="option" src="{{asset('assets/img/secenek2.svg')}}"/></a>
+            <a href="{{url('/option/2')}}"><img class="option" src="{{asset('assets/img/secenek2.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option?type=2')}}"><img class="option" src="{{asset('assets/img/secenek3.svg')}}"/></a>
+            <a href="{{url('/option/3')}}"><img class="option" src="{{asset('assets/img/secenek3.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option?type=3')}}"><img class="option" src="{{asset('assets/img/secenek4.svg')}}"/></a>
+            <a href="{{url('/option/4')}}"><img class="option" src="{{asset('assets/img/secenek4.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option?type=4')}}"><img class="option" src="{{asset('assets/img/secenek5.svg')}}"/></a>
+            <a href="{{url('/option/5')}}"><img class="option" src="{{asset('assets/img/secenek5.svg')}}"/></a>
         </div>
         <div class="col-lg-1">
 
