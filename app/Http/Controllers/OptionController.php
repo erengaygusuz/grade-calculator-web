@@ -6,6 +6,7 @@ use App\Models\Level;
 use App\Models\LevelItem;
 use App\Models\OptionLevel;
 use App\Models\UserLevelItemGrade;
+use App\Models\UserOption;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -14,23 +15,20 @@ class OptionController extends Controller
 {
     public function getLevels($option_id)
     {
+        $userOption = UserOption::where('user_id', Auth::user()->id)->first();
+
         $optionLevels = OptionLevel::where('option_id', $option_id)->get();
         $levelItems = LevelItem::all();
 
-        //$userLevelItemGrade = UserLevelItemGrade::all();
-
-        //dd($userLevelItemGrade[0]->user->name);
-
-        //dd($userLevelItemGrade[0]->level->level_id);
-
-        //dd($userLevelItemGrade[0]->levelItem->level_item_id);
-
-        $this->saveUserLevelItemGradeData($optionLevels, $levelItems);
+        if ($userOption == NULL)
+        {
+            $this->saveUserLevelItemGradeData($optionLevels, $levelItems, $option_id);
+        }
 
         return view('option', compact('optionLevels', 'levelItems'));
     }
 
-    private function saveUserLevelItemGradeData($optionLevels, $levelItems)
+    private function saveUserLevelItemGradeData($optionLevels, $levelItems, $option_id)
     {
         try
         {
@@ -51,6 +49,13 @@ class OptionController extends Controller
                     }
                 }
             }
+
+            $userOption = new UserOption();
+
+            $userOption->user_id = Auth::user()->id;
+            $userOption->option_id = $option_id;
+
+            $userOption->save();
         }
 
         catch(Exception $e)
