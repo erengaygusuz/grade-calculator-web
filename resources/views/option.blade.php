@@ -10,13 +10,6 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
     Seçenek - {{$optionVal}}
 @endsection
 
-@section('navbar.left.item')
-    <a class="float-start" href="{{url('/home')}}">
-        <img class="about-grade-calculation-btn" style="margin-left: 10px;"
-             src="{{asset('assets/img/anaSayfaBtn.svg')}}" alt="">
-    </a>
-@endsection
-
 @section('navbar.right.item')
 
     @include('layouts.inc.navbar-right-context-menu')
@@ -59,32 +52,24 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         <div class="card-group">
                             <table class="table table-bordered" id="genel" style="border-color: black;">
                                 <tbody>
-                                <!-- Ad ve soyad bilgisi -->
                                 <tr>
                                     <td>Ad ve Soyad:</td>
-                                    <td><?php /*echo $ad . " " . $soyad; */ ?></td>
+                                    <td>{{Auth::user()->name ." ". Auth::user()->surname}}</td>
                                 </tr>
-                                <!-- Kullanıcı adı bilgisi -->
                                 <tr>
                                     <td>Kullanıcı Adı:</td>
-                                    <td><?php /*echo $kulAdi */ ?></td>
+                                    <td>{{Auth::user()->email}}</td>
                                 </tr>
-                                <!-- Genel ortalama bilgisi -->
                                 <tr>
                                     <td>Genel Ortalama:</td>
                                     <td id="genelOrt"><?php /*echo sprintf("%.1f", $ortGenel); */ ?></td>
                                 </tr>
-                                <!-- Pro kuru ortalamsı bilgisi -->
+                                @foreach($optionLevels as $optionLevel)
                                 <tr>
-                                    <td>Pro Kuru Ortalaması:</td>
+                                    <td>{{$optionLevel->level->name}} Kuru Ortalaması:</td>
                                     <td id="genelProNot"><?php /*echo sprintf("%.1f", $ortPro); */ ?></td>
                                 </tr>
-                                <!-- A kuru ortalaması bilgisi -->
-                                <tr>
-                                    <td>A Kuru Ortalaması:</td>
-                                    <td id="genelNot"><?php /*echo sprintf("%.1f", $ortA); */ ?></td>
-                                </tr>
-                                <!-- Durum bilgisi -->
+                                @endforeach
                                 <tr>
                                     <td>Durum:</td>
                                     <td id="durum"><?php /*echo $durum */ ?></td>
