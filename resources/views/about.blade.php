@@ -48,9 +48,6 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         <div class="col-lg-12">
                             <img class="about-developer-eren" src="{{asset('assets/img/hakkindaEren.svg')}}"/>
                         </div>
-                        <div class="col-lg-12">
-                            <img class="about-developer-veysel" src="{{asset('assets/img/hakkindaVeysel.svg')}}"/>
-                        </div>
                         <div class="col-lg-12 about-text-3">
                             © 2023
                         </div>
