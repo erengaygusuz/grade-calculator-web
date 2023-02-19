@@ -35,24 +35,19 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-12 col-12 ">
-                <div class="text-center">
-                    <form method="POST" action="{{ url('settings/default') }}">
+                <div class="text-center mt-5">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form method="POST" action="{{ url('settings/update') }}" style="display: inline">
                         @csrf
                         @method('PUT')
-                        <button type="submit" name="varsayilan" id="varsayilan" class="btn varsayilan-butonu-arkaplan"
-                                style="margin-top: 45px;">Varsayılan
-                        </button>
-                    </form>
-                    <div class="kur-not">
-                        <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"
-                             style="margin-top: 45px;"/>
-                    </div>
-                    <form method="POST" action="{{ url('settings/save') }}">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" name="kaydet" id="kaydet" class="btn kaydet-butonu-arkaplan"
-                                style="margin-top: 45px;">Kaydet
-                        </button>
                         @foreach($levelItems as $levelItem)
                             <div class="card border-primary mb-3">
                                 <div class="card-body">
@@ -61,13 +56,27 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                     </div>
                                     <div class="float-end">
                                         <input type="text" class="form-control yuzde-input-ayar"
-                                               value="{{$levelItem->currentPercentage}}" id="qYuzde"
-                                               onkeyup="maxMinDeger()" name="currentPercentage" required>
+                                               value="{{$levelItem->currentPercentage}}"
+                                               name="{{$levelItem->name}}_currentPercentage">
                                     </div>
                                 </div>
                             </div>
+                        @endforeach
+                        <button type="submit" name="kaydet" id="kaydet" class="btn settingsUpdateBtn"
+                                style="margin-top: 45px;">Kaydet
+                        </button>
+                        <div class="kur-not">
+                            <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"
+                                 style="margin-top: 45px;"/>
+                        </div>
                     </form>
-                    @endforeach
+                    <form method="POST" action="{{ url('settings/default') }}" style="display: inline">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" name="varsayilan" id="varsayilan" class="btn settingsDefaultBtn"
+                                style="margin-top: 45px;">Varsayılan
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SettingsFormRequest;
 use App\Models\LevelItem;
 use App\Models\UserOption;
-use Illuminate\Http\Request;
+use http\Exception;
 use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
@@ -35,14 +36,16 @@ class SettingsController extends Controller
         }
     }
 
-    public function savePercentages()
+    public function updatePercentages(SettingsFormRequest $request)
     {
+        $validatedData = $request->validated();
+
         $levelItems = LevelItem::all();
 
         for ($i = 0; $i < count($levelItems); $i++)
         {
             $levelItems[$i]->update([
-                'currentPercentage' => $levelItems[$i]->defaultPercentage
+                'currentPercentage' => array_values($validatedData)[$i]
             ]);
         }
 

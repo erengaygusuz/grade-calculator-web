@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('settings/{option_id}', [App\Http\Controllers\SettingsController::class, 'index']);
     Route::put('settings/default', [App\Http\Controllers\SettingsController::class, 'setPercentageToDefault']);
-    Route::put('settings/save', [App\Http\Controllers\SettingsController::class, 'savePercentages']);
+    Route::put('settings/update', [App\Http\Controllers\SettingsController::class, 'updatePercentages']);
 
     Route::get('about/{option_id}', [App\Http\Controllers\AboutController::class, 'index']);
 });
