@@ -48,7 +48,8 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
             <div class="tab-pane fade show active" id="menu1-tab-pane" role="tabpanel" aria-labelledby="menu1"
                  tabindex="0">
                 <div class="row">
-                    <div class="card card-primary" style="padding: 30px 30px 10px 30px; border-radius: 10px;">
+                    <div class="col-lg-12" style="padding: 10px;">
+                        <div class="card card-primary" style="padding: 30px 30px 10px 30px; border-radius: 10px;">
                         <div class="card-group">
                             <table class="table table-bordered" id="genel" style="border-color: black;">
                                 <tbody>
@@ -78,6 +79,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                             </table>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
             @foreach($optionLevels as $optionLevel)
@@ -105,30 +107,32 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         {{$levelItem->name}}
                     </div>
                     <div class="row mb-4">
-                        <div class="card card-primary" style="border-radius: 10px;">
-                            <div class="card-body">
-                                <div class="row text-center">
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                            <?php
-                                            for ($l=0; $l < 5; $l++)
-                                            {
-                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'>
-                                                <input type='text' id='aNot-{{$levelItem->id}}-{$l}' name='aNot-{{$levelItem->id}}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
-                                            }
-                                            ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
-                                </div>
-                                <div class="row text-center">
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
-                                             style="margin: 0px; padding: 0px;"></div>
-                                            <?php
-                                            for ($l=5; $l < 10; $l++)
-                                            {
-                                                echo "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style='margin: 0px; padding: 0px;'>
-                                                <input type='text' id='aNot-{{$levelItem->id}}-{$l}' name='aNot-{{$levelItem->id}}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
-                                            }
-                                            ?>
-                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin: 0px; padding: 0px;"></div>
+                        <div class="col-lg-12" style="padding: 10px;">
+                            <div class="card card-primary" style="border-radius: 10px;">
+                                <div class="card-body">
+                                    <div class="row text-center">
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-1" style="margin: 0px; padding: 0px;"></div>
+                                                <?php
+                                                for ($l=0; $l < 5; $l++)
+                                                {
+                                                    echo "<div class='col-lg-2 col-md-2 col-sm-2 col-2' style='margin: 0px; padding: 0px;'>
+                                                    <input type='text' id='aNot-{{$levelItem->id}}-{$l}' name='aNot-{{$levelItem->id}}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
+                                                }
+                                                ?>
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-1" style="margin: 0px; padding: 0px;"></div>
+                                    </div>
+                                    <div class="row text-center">
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-1"
+                                                 style="margin: 0px; padding: 0px;"></div>
+                                                <?php
+                                                for ($l=5; $l < 10; $l++)
+                                                {
+                                                    echo "<div class='col-lg-2 col-md-2 col-sm-2 col-2' style='margin: 0px; padding: 0px;'>
+                                                    <input type='text' id='aNot-{{$levelItem->id}}-{$l}' name='aNot-{{$levelItem->id}}-{$l}' class='form-control yuzde-input-not' onkeyup='maxMinDegerPro()' value='" . 0.00/*$aNotAl[$j][$i]*/ . "'></div>";
+                                                }
+                                                ?>
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-1" style="margin: 0px; padding: 0px;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
