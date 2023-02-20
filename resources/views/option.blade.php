@@ -27,7 +27,6 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         aria-selected="true">Genel
                 </button>
                 @foreach($optionLevels as $optionLevel)
-                    <span></span>
                     <button class="nav-link grade-tab-item" id="menu{{$optionLevel->id + 1}}"
                             data-bs-toggle="tab"
                             data-bs-target="#menu{{$optionLevel->id + 1}}-tab-pane"
@@ -41,7 +40,15 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 @endsection
 
 @section('content')
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="tab-content mt-5" id="nav-tabContent">
@@ -85,7 +92,9 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                 @foreach($optionLevels as $optionLevel)
                     <div class="tab-pane fade" id="menu{{$optionLevel->id + 1}}-tab-pane" role="tabpanel"
                          aria-labelledby="menu{{$optionLevel->id + 1}}" tabindex="0">
-                        <form action="" method="POST">
+                        <form method="POST" action="{{ url('option/update/'.$optionVal.'/'.$optionLevel->id) }}">
+                            @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <div class="kur-label">
@@ -100,8 +109,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                                 <?php echo sprintf("%.1f", 85.346); ?>
                                         </div>
                                     </div>
-                                    <button type="submit" name="hesapla-1-2" id="hesaplaA"
-                                            class="btn hesapla-butonu-arkaplan">
+                                    <button type="submit" name="hesapla" id="hesaplaA" class="btn hesapla-butonu-arkaplan">
                                         Hesapla
                                     </button>
                                 </div>
@@ -121,7 +129,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                                         ->where('level_item_id', $levelItem->id) as $grade)
                                                         <div class='col-lg-2 col-md-2 col-sm-2 col-2'
                                                              style='margin: 0px; padding: 0px;'>
-                                                            <input type='text' name='aNot'
+                                                            <input type='text' name='grade[]'
                                                                    class='form-control yuzde-input-not' value='{{$grade->grade}}'>
                                                         </div>
                                                     @endforeach
