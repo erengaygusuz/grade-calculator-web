@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,11 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userOption = UserOption::where('user_id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
 
-        if ($userOption != NULL)
+        if ($user->option != NULL)
         {
-            return redirect('/option/'.$userOption->option->id);
+            return redirect('/option/'.$user->option->id);
         }
 
         return view('home');

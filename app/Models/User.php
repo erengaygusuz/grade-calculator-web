@@ -22,6 +22,7 @@ class User extends Authenticatable
         'surname',
         'email',
         'password',
+        'option_id'
     ];
 
     /**
@@ -31,7 +32,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -40,6 +41,11 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
+
+    public function option()
+    {
+        return $this->belongsTo(Option::class);
+    }
 }

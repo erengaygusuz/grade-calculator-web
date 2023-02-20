@@ -2,68 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Level;
-use App\Models\LevelItem;
-use App\Models\LevelLevelItem;
-use App\Models\OptionLevel;
-use App\Models\UserLevelItemGrade;
-use App\Models\UserOption;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
+use App\Models\Option;
+use App\Models\Grade;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class OptionController extends Controller
 {
     public function getLevelsAndItsDatas($option_id)
     {
-        $userOption = UserOption::where('user_id', Auth::user()->id)->first();
+        $optionLevels = Option::where('id', $option_id)->first()->levels;
 
-        $optionLevels = OptionLevel::where('option_id', $option_id)->get();
-        $levelItems = LevelItem::all();
+        $user = User::where('id', Auth::user()->id)->first();
 
-        if ($userOption == NULL)
+        if ($user->option == NULL)
         {
-            $this->saveUserLevelItemGradeData($optionLevels, $levelItems, $option_id);
+            $this->saveUserLevelItemGradeData($optionLevels, $option_id);
         }
 
-        $userLevelItemGrade = UserLevelItemGrade::where('user_id', Auth::user()->id);
-
-        /*$userLevelGradeItem = UserLevelItemGrade::where('user_id', Auth::user()->id)
-            ->where('level_id', $optionLevels[0]->level->id)
-            ->where('level_item_id', $levelItems[0]->id)
-            ->get();*/
-
-        return view('option', compact('optionLevels', 'levelItems', 'userLevelItemGrade'));
+        return view('option', compact('optionLevels'));
     }
 
-    private function saveUserLevelItemGradeData($optionLevels, $levelItems, $option_id)
+    private function saveUserLevelItemGradeData($optionLevels, $option_id)
     {
         try
         {
             for ($i = 0; $i < count($optionLevels); $i++)
             {
-                for ($j = 0; $j < count($levelItems); $j++)
+                for ($j = 0; $j < count($optionLevels[$i]->levelItems); $j++)
                 {
-                    for ($k = 0; $k < 10; $k++)
+                    for ($k = 0; $k < 12; $k++)
                     {
-                        $userLevelItemGrade = new UserLevelItemGrade();
+                        $grade = new Grade();
 
-                        $userLevelItemGrade->user_id = Auth::user()->id;
-                        $userLevelItemGrade->level_id = $optionLevels[$i]->level->id;
-                        $userLevelItemGrade->level_item_id = $levelItems[$j]->id;
-                        $userLevelItemGrade->grade = 0;
+                        $grade->user_id = Auth::user()->id;
+                        $grade->level_id = $optionLevels[$i]->id;
+                        $grade->level_item_id = $optionLevels[$i]->levelItems[$j]->id;
+                        $grade->grade = 0;
 
-                        $userLevelItemGrade->save();
+                        $grade->save();
                     }
                 }
             }
 
-            $userOption = new UserOption();
-
-            $userOption->user_id = Auth::user()->id;
-            $userOption->option_id = $option_id;
-
-            $userOption->save();
+            $user = User::where('id', Auth::user()->id)->first();
+            $user->option_id = $option_id;
+            $user->save();
         }
 
         catch(Exception $e)

@@ -28,11 +28,11 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                 </button>
                 @foreach($optionLevels as $optionLevel)
                     <span></span>
-                    <button class="nav-link grade-tab-item" id="menu{{$optionLevel->level->id + 1}}"
+                    <button class="nav-link grade-tab-item" id="menu{{$optionLevel->id + 1}}"
                             data-bs-toggle="tab"
-                            data-bs-target="#menu{{$optionLevel->level->id + 1}}-tab-pane"
-                            type="button" role="tab" aria-controls="menu{{$optionLevel->level->id + 1}}"
-                            aria-selected="true">{{$optionLevel->level->name}}
+                            data-bs-target="#menu{{$optionLevel->id + 1}}-tab-pane"
+                            type="button" role="tab" aria-controls="menu{{$optionLevel->id + 1}}"
+                            aria-selected="true">{{$optionLevel->name}}
                     </button>
                 @endforeach
             </div>
@@ -67,7 +67,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                         </tr>
                                         @foreach($optionLevels as $optionLevel)
                                             <tr>
-                                                <td>{{$optionLevel->level->name}} Kuru Ortalaması:</td>
+                                                <td>{{$optionLevel->name}} Kuru Ortalaması:</td>
                                                 <td id="genelProNot"><?php /*echo sprintf("%.1f", $ortPro); */ ?></td>
                                             </tr>
                                         @endforeach
@@ -83,14 +83,14 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                     </div>
                 </div>
                 @foreach($optionLevels as $optionLevel)
-                    <div class="tab-pane fade" id="menu{{$optionLevel->level->id + 1}}-tab-pane" role="tabpanel"
-                         aria-labelledby="menu{{$optionLevel->level->id + 1}}" tabindex="0">
+                    <div class="tab-pane fade" id="menu{{$optionLevel->id + 1}}-tab-pane" role="tabpanel"
+                         aria-labelledby="menu{{$optionLevel->id + 1}}" tabindex="0">
                         <form action="" method="POST">
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <div class="kur-label">
                                         <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                        <div class="kur-label-ortala">{{$optionLevel->level->name}} kuru</br>
+                                        <div class="kur-label-ortala">{{$optionLevel->name}} kuru</br>
                                             ortalaması
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                     </button>
                                 </div>
                             </div>
-                            @foreach($levelItems as $levelItem)
+                            @foreach($optionLevel->levelItems as $levelItem)
                                 <div class="label-a mt-3 mb-1">
                                     {{$levelItem->name}}
                                 </div>
@@ -115,30 +115,16 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                         <div class="card card-primary" style="border-radius: 10px;">
                                             <div class="card-body">
                                                 <div class="row text-center">
-                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-1"
-                                                         style="margin: 0px; padding: 0px;"></div>
-                                                    @for($i = 0; $i < 5; $i++)
+                                                    @foreach($levelItem->grades
+                                                        ->where('user_id', Auth::user()->id)
+                                                        ->where('level_id', $optionLevel->id)
+                                                        ->where('level_item_id', $levelItem->id) as $grade)
                                                         <div class='col-lg-2 col-md-2 col-sm-2 col-2'
                                                              style='margin: 0px; padding: 0px;'>
-                                                            <input type='text' name='aNot-{{$levelItem->id}}-{$l}'
-                                                                   class='form-control yuzde-input-not' value='0'>
+                                                            <input type='text' name='aNot'
+                                                                   class='form-control yuzde-input-not' value='{{$grade->grade}}'>
                                                         </div>
-                                                    @endfor
-                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-1"
-                                                         style="margin: 0px; padding: 0px;"></div>
-                                                </div>
-                                                <div class="row text-center">
-                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-1"
-                                                         style="margin: 0px; padding: 0px;"></div>
-                                                    @for($i = 5; $i < 10; $i++)
-                                                        <div class='col-lg-2 col-md-2 col-sm-2 col-2'
-                                                             style='margin: 0px; padding: 0px;'>
-                                                            <input type='text' name='aNot-{{$levelItem->id}}-{$l}'
-                                                                   class='form-control yuzde-input-not' value='0'>
-                                                        </div>
-                                                    @endfor
-                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-1"
-                                                         style="margin: 0px; padding: 0px;"></div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

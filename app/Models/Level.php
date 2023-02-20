@@ -14,4 +14,14 @@ class Level extends Model
     protected $fillable = [
       'name'
     ];
+
+    public function levelItems()
+    {
+        return $this->belongsToMany(LevelItem::class);
+    }
+
+    public function options()
+    {
+        return $this->belongsToMany(Option::class, 'option_level');
+    }
 }

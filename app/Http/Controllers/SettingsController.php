@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SettingsFormRequest;
 use App\Models\LevelItem;
+use App\Models\User;
 use App\Models\UserOption;
 use http\Exception;
 use Illuminate\Support\Facades\Auth;
@@ -28,11 +29,11 @@ class SettingsController extends Controller
             ]);
         }
 
-        $userOption = UserOption::where('user_id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
 
-        if ($userOption != NULL)
+        if ($user != NULL)
         {
-            return redirect('/settings/'.$userOption->option->id);
+            return redirect('/settings/'.$user->option->id);
         }
     }
 
@@ -49,11 +50,11 @@ class SettingsController extends Controller
             ]);
         }
 
-        $userOption = UserOption::where('user_id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
 
-        if ($userOption != NULL)
+        if ($user != NULL)
         {
-            return redirect('/settings/'.$userOption->option->id);
+            return redirect('/settings/'.$user->option->id);
         }
     }
 }

@@ -16,4 +16,14 @@ class LevelItem extends Model
       'defaultPercentage',
       'currentPercentage'
     ];
+
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class);
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }

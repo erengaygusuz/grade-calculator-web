@@ -12,6 +12,16 @@ class Option extends Model
     protected $table = 'option';
 
     protected $fillable = [
-      'name'
+        'name'
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class, 'option_level');
+    }
 }
