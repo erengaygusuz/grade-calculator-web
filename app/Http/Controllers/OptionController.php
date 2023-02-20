@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Level;
 use App\Models\LevelItem;
+use App\Models\LevelLevelItem;
 use App\Models\OptionLevel;
 use App\Models\UserLevelItemGrade;
 use App\Models\UserOption;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class OptionController extends Controller
 {
-    public function getLevels($option_id)
+    public function getLevelsAndItsDatas($option_id)
     {
         $userOption = UserOption::where('user_id', Auth::user()->id)->first();
 
@@ -25,7 +26,14 @@ class OptionController extends Controller
             $this->saveUserLevelItemGradeData($optionLevels, $levelItems, $option_id);
         }
 
-        return view('option', compact('optionLevels', 'levelItems'));
+        $userLevelItemGrade = UserLevelItemGrade::where('user_id', Auth::user()->id);
+
+        /*$userLevelGradeItem = UserLevelItemGrade::where('user_id', Auth::user()->id)
+            ->where('level_id', $optionLevels[0]->level->id)
+            ->where('level_item_id', $levelItems[0]->id)
+            ->get();*/
+
+        return view('option', compact('optionLevels', 'levelItems', 'userLevelItemGrade'));
     }
 
     private function saveUserLevelItemGradeData($optionLevels, $levelItems, $option_id)

@@ -20,7 +20,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::middleware(['auth'])->group(function (){
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index']);
 
-    Route::get('option/{option_id}', [App\Http\Controllers\OptionController::class, 'getLevels']);
+    Route::get('option/{option_id}', [App\Http\Controllers\OptionController::class, 'getLevelsAndItsDatas']);
 
     Route::get('settings/{option_id}', [App\Http\Controllers\SettingsController::class, 'index']);
     Route::put('settings/default', [App\Http\Controllers\SettingsController::class, 'setPercentageToDefault']);

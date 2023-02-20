@@ -83,16 +83,5 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
     </div>
 
     <script src="{{asset('assets/js/dropdownMenu.js')}}"></script>
-    <script src="{{asset('assets/js/ayar-max-min-deger.js')}}"></script>
-    <script type="text/javascript">/*
-        $(document).ready(function(){
-
-            var qYuzde = parseInt("<?php /*echo $veri_q; */ ?>");
-            var wYuzde = parseInt("<?php /*echo $veri_w; */ ?>");
-            var m_sYuzde = parseInt("<?php /*echo $veri_m_s;*/ ?>");
-            var hYuzde = parseInt("<?php /*echo $veri_h; */ ?>");
-
-        });*/
-    </script>
 
 @endsection
