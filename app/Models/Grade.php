@@ -18,8 +18,18 @@ class Grade extends Model
         'grade'
     ];
 
-    public function levelItems()
+    public function user()
     {
-        return $this->belongsTo(LevelItem::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo('level_level_item', 'level_id', 'level_id');
+    }
+
+    public function levelItem()
+    {
+        return $this->belongsTo('level_level_item', 'level_item_id', 'level_item_id');
     }
 }

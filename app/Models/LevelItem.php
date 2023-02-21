@@ -19,7 +19,7 @@ class LevelItem extends Model
 
     public function levels()
     {
-        return $this->belongsToMany(Level::class);
+        return $this->belongsToMany(Level::class, 'level_level_item');
     }
 
     public function grades()

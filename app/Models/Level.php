@@ -17,7 +17,7 @@ class Level extends Model
 
     public function levelItems()
     {
-        return $this->belongsToMany(LevelItem::class);
+        return $this->belongsToMany(LevelItem::class, 'level_level_item');
     }
 
     public function options()

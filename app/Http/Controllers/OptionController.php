@@ -12,15 +12,46 @@ class OptionController extends Controller
 {
     public function getLevelsAndItsDatas($option_id)
     {
-        $optionLevels = Option::where('id', $option_id)->first()->levels;
-
         $user = User::where('id', Auth::user()->id)->first();
 
-        if ($user->option == NULL) {
-            $this->saveUserLevelItemGradeData($optionLevels, $option_id);
+        $levels = $user->option->levels;
+
+        $totalGrades = array();
+
+        foreach ($levels as $level)
+        {
+            $i = 0;
+
+            $totalGrade = 0;
+
+            foreach ($level->levelItems as $levelItem)
+            {
+                $levelItemGradeTotal = 0;
+
+                $grades = $levelItem->grades
+                    ->where('user_id', Auth::user()->id)
+                    ->where('level_id', $level->id)
+                    ->where('level_item_id', $levelItem->id);
+
+                foreach ($grades as $grade)
+                {
+                    $levelItemGradeTotal += $grade->grade;
+
+                    $i = $i + 1;
+                }
+
+                $totalGrade += (($levelItemGradeTotal / count($grades)) * ($levelItem->currentPercentage / 100));
+            }
+
+            array_push($totalGrades, $totalGrade);
         }
 
-        return view('option', compact('optionLevels'));
+        if ($user->option == NULL)
+        {
+            $this->saveUserLevelItemGradeData($levels, $option_id);
+        }
+
+        return view('option', compact('levels', 'totalGrades'));
     }
 
     private function saveUserLevelItemGradeData($optionLevels, $option_id)
@@ -61,10 +92,12 @@ class OptionController extends Controller
 
         foreach ($optionLevel->levelItems as $levelItem)
         {
-            foreach ($levelItem->grades
-                         ->where('user_id', Auth::user()->id)
-                         ->where('level_id', $optionLevel->id)
-                         ->where('level_item_id', $levelItem->id) as $grade)
+            $grades = $levelItem->grades
+                ->where('user_id', Auth::user()->id)
+                ->where('level_id', $optionLevel->id)
+                ->where('level_item_id', $levelItem->id);
+
+            foreach ($grades as $grade)
             {
                 $grade->update([
                     'grade' => $validatedData['grade'][$i]

@@ -26,12 +26,12 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         type="button" role="tab" aria-controls="menu1"
                         aria-selected="true">Genel
                 </button>
-                @foreach($optionLevels as $optionLevel)
-                    <button class="nav-link grade-tab-item" id="menu{{$optionLevel->id + 1}}"
+                @foreach($levels as $level)
+                    <button class="nav-link grade-tab-item" id="menu{{$level->id + 1}}"
                             data-bs-toggle="tab"
-                            data-bs-target="#menu{{$optionLevel->id + 1}}-tab-pane"
-                            type="button" role="tab" aria-controls="menu{{$optionLevel->id + 1}}"
-                            aria-selected="true">{{$optionLevel->name}}
+                            data-bs-target="#menu{{$level->id + 1}}-tab-pane"
+                            type="button" role="tab" aria-controls="menu{{$level->id + 1}}"
+                            aria-selected="true">{{$level->name}}
                     </button>
                 @endforeach
             </div>
@@ -70,17 +70,18 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                         </tr>
                                         <tr>
                                             <td>Genel Ortalama:</td>
-                                            <td id="genelOrt"><?php /*echo sprintf("%.1f", $ortGenel); */ ?></td>
+                                            <td id="genelOrt">{{sprintf("%.1f", array_sum($totalGrades) / count($totalGrades))}}</td>
                                         </tr>
-                                        @foreach($optionLevels as $optionLevel)
+                                        @foreach($levels as $key=>$level)
                                             <tr>
-                                                <td>{{$optionLevel->name}} Kuru Ortalaması:</td>
-                                                <td id="genelProNot"><?php /*echo sprintf("%.1f", $ortPro); */ ?></td>
+                                                <td>{{$level->name}} Kuru Ortalaması:</td>
+                                                <td id="genelProNot">{{sprintf("%.1f", $totalGrades[$key])}}</td>
                                             </tr>
                                         @endforeach
                                         <tr>
                                             <td>Durum:</td>
-                                            <td id="durum"><?php /*echo $durum */ ?></td>
+                                            <td id="durum"><?php (array_sum($totalGrades) / count($totalGrades) >= 60)
+                                            ? print('<span style="color: green">Başarılı</span>') : print('<span style="color: red">Başarısız</span>') ?></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -89,24 +90,24 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         </div>
                     </div>
                 </div>
-                @foreach($optionLevels as $optionLevel)
-                    <div class="tab-pane fade" id="menu{{$optionLevel->id + 1}}-tab-pane" role="tabpanel"
-                         aria-labelledby="menu{{$optionLevel->id + 1}}" tabindex="0">
-                        <form method="POST" action="{{ url('option/update/'.$optionVal.'/'.$optionLevel->id) }}">
+                @foreach($levels as $key=>$level)
+                    <div class="tab-pane fade" id="menu{{$level->id + 1}}-tab-pane" role="tabpanel"
+                         aria-labelledby="menu{{$level->id + 1}}" tabindex="0">
+                        <form method="POST" action="{{ url('option/update/'.$optionVal.'/'.$level->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <div class="kur-label">
                                         <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                        <div class="kur-label-ortala">{{$optionLevel->name}} kuru</br>
+                                        <div class="kur-label-ortala">{{$level->name}} kuru</br>
                                             ortalaması
                                         </div>
                                     </div>
                                     <div class="kur-not">
                                         <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
                                         <div class="kur-not-ortala" id="sonucA">
-                                                <?php echo sprintf("%.1f", 85.346); ?>
+                                                {{sprintf("%.1f", $totalGrades[$key])}}
                                         </div>
                                     </div>
                                     <button type="submit" name="hesapla" id="hesaplaA" class="btn hesapla-butonu-arkaplan">
@@ -114,7 +115,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                     </button>
                                 </div>
                             </div>
-                            @foreach($optionLevel->levelItems as $levelItem)
+                            @foreach($level->levelItems as $levelItem)
                                 <div class="label-a mt-3 mb-1">
                                     {{$levelItem->name}}
                                 </div>
@@ -125,7 +126,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                                 <div class="row text-center">
                                                     @foreach($levelItem->grades
                                                         ->where('user_id', Auth::user()->id)
-                                                        ->where('level_id', $optionLevel->id)
+                                                        ->where('level_id', $level->id)
                                                         ->where('level_item_id', $levelItem->id) as $grade)
                                                         <div class='col-lg-2 col-md-2 col-sm-2 col-2'
                                                              style='margin: 0px; padding: 0px;'>
