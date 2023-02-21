@@ -20,13 +20,13 @@ class OptionController extends Controller
 
         foreach ($levels as $level)
         {
-            $i = 0;
-
             $totalGrade = 0;
 
             foreach ($level->levelItems as $levelItem)
             {
                 $levelItemGradeTotal = 0;
+
+                $includedGradeCount = 0;
 
                 $grades = $levelItem->grades
                     ->where('user_id', Auth::user()->id)
@@ -35,12 +35,18 @@ class OptionController extends Controller
 
                 foreach ($grades as $grade)
                 {
-                    $levelItemGradeTotal += $grade->grade;
+                    if ($grade->grade !== NULL)
+                    {
+                        $includedGradeCount++;
 
-                    $i = $i + 1;
+                        $levelItemGradeTotal += $grade->grade;
+                    }
                 }
 
-                $totalGrade += (($levelItemGradeTotal / count($grades)) * ($levelItem->currentPercentage / 100));
+                if ($includedGradeCount > 0)
+                {
+                    $totalGrade += (($levelItemGradeTotal / $includedGradeCount) * ($levelItem->currentPercentage / 100));
+                }
             }
 
             array_push($totalGrades, $totalGrade);
@@ -65,7 +71,7 @@ class OptionController extends Controller
                         $grade->user_id = Auth::user()->id;
                         $grade->level_id = $optionLevels[$i]->id;
                         $grade->level_item_id = $optionLevels[$i]->levelItems[$j]->id;
-                        $grade->grade = 0;
+                        $grade->grade = NULL;
 
                         $grade->save();
                     }

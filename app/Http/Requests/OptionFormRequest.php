@@ -25,10 +25,10 @@ class OptionFormRequest extends FormRequest
     {
         return [
             'grade.*' => [
-                'required',
                 'integer',
                 'min:0',
-                'max:100'
+                'max:100',
+                'nullable'
             ]
         ];
     }
