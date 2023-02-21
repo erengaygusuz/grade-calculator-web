@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('level_item_id')
                 ->index();
 
-            $table->float('grade');
+            $table->float('grade')->nullable();
 
             $table->foreign('level_item_id')
                 ->references('level_item_id')
