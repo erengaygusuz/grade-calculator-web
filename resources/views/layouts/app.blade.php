@@ -26,6 +26,7 @@
     @yield('second-navbar')
 
     @yield('content')
+
     <!-- Scripts -->
     <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
     <script src="{{asset('assets/js/popper.min.js')}}"></script>

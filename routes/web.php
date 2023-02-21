@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('option/{option_id}', [App\Http\Controllers\OptionController::class, 'getLevelsAndItsDatas']);
     Route::put('option/update/{option_id}/{level_id}', [App\Http\Controllers\OptionController::class, 'updateGrades']);
+    Route::get('resetOption', [App\Http\Controllers\OptionController::class, 'resetSelectedOption']);
 
     Route::get('settings/{option_id}', [App\Http\Controllers\SettingsController::class, 'index']);
     Route::put('settings/default', [App\Http\Controllers\SettingsController::class, 'setPercentageToDefault']);

@@ -14,7 +14,12 @@ class OptionController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->first();
 
-        $levels = $user->option->levels;
+        $levels = Option::where('id', $option_id)->first()->levels;
+
+        if ($user->option == NULL)
+        {
+            $this->saveUserLevelItemGradeData($levels, $option_id);
+        }
 
         $totalGrades = array();
 
@@ -52,20 +57,19 @@ class OptionController extends Controller
             array_push($totalGrades, $totalGrade);
         }
 
-        if ($user->option == NULL)
-        {
-            $this->saveUserLevelItemGradeData($levels, $option_id);
-        }
-
         return view('option', compact('levels', 'totalGrades'));
     }
 
     private function saveUserLevelItemGradeData($optionLevels, $option_id)
     {
-        try {
-            for ($i = 0; $i < count($optionLevels); $i++) {
-                for ($j = 0; $j < count($optionLevels[$i]->levelItems); $j++) {
-                    for ($k = 0; $k < 12; $k++) {
+        try
+        {
+            for ($i = 0; $i < count($optionLevels); $i++)
+            {
+                for ($j = 0; $j < count($optionLevels[$i]->levelItems); $j++)
+                {
+                    for ($k = 0; $k < 12; $k++)
+                    {
                         $grade = new Grade();
 
                         $grade->user_id = Auth::user()->id;
@@ -81,7 +85,10 @@ class OptionController extends Controller
             $user = User::where('id', Auth::user()->id)->first();
             $user->option_id = $option_id;
             $user->save();
-        } catch (Exception $e) {
+
+        }
+        catch (Exception $e)
+        {
             echo 'Message: ' . $e->getMessage();
 
             return redirect()->back();
@@ -119,5 +126,20 @@ class OptionController extends Controller
         {
             return redirect('/option/' . $user->option->id);
         }
+    }
+
+    public function resetSelectedOption()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        $user->update([
+            'option_id' => NULL
+        ]);
+
+        $userGrades = Grade::where('user_id', Auth::user()->id);
+
+        $userGrades->delete();
+
+        return redirect('/home');
     }
 }

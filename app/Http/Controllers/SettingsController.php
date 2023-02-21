@@ -57,4 +57,5 @@ class SettingsController extends Controller
             return redirect('/settings/'.$user->option->id);
         }
     }
+
 }

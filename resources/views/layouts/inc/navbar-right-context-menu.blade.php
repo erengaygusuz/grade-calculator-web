@@ -6,7 +6,7 @@
                 <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                 Ayarlar
             </a>
-            <a href="{{url('/settings/'.$optionVal)}}">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <img src="{{asset('assets/img/sifirla.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                 Sıfırla
             </a>
@@ -26,3 +26,25 @@
         </div>
     </div>
 </a>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Seçimi Sıfırla</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Seçim ekranına dönmek istediğinize emin misiniz?<br>
+                Eğer evet'e tıklarsanız tüm notlarınız silinecektir !!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a href="{{url('/resetOption')}}">
+                    <button type="button" class="btn btn-primary">Evet</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
