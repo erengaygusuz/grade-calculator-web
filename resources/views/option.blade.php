@@ -7,7 +7,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
 @extends('layouts.app')
 @section('title')
-    Seçenek - {{$optionVal}}
+    Option - {{$optionVal}}
 @endsection
 
 @section('navbar.right.item')
@@ -24,7 +24,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         data-bs-toggle="tab"
                         data-bs-target="#menu1-tab-pane"
                         type="button" role="tab" aria-controls="menu1"
-                        aria-selected="true">Genel
+                        aria-selected="true">Info
                 </button>
                 @foreach($levels as $level)
                     <button class="nav-link grade-tab-item" id="menu{{$level->id + 1}}"
@@ -53,7 +53,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModal1Label">Hata</h1>
+                        <h1 class="modal-title fs-5" id="exampleModal1Label">Warning</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -64,7 +64,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tamam</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>
@@ -82,27 +82,27 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                     <table class="table table-bordered" id="genel" style="border-color: black;">
                                         <tbody>
                                         <tr>
-                                            <td>Ad ve Soyad:</td>
+                                            <td>Name and Surname:</td>
                                             <td>{{Auth::user()->name ." ". Auth::user()->surname}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Kullanıcı Adı:</td>
+                                            <td>E-mail:</td>
                                             <td>{{Auth::user()->email}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Genel Ortalama:</td>
+                                            <td>General Average:</td>
                                             <td id="genelOrt">{{sprintf("%.1f", array_sum($totalGrades) / count($totalGrades))}}</td>
                                         </tr>
                                         @foreach($levels as $key=>$level)
                                             <tr>
-                                                <td>{{$level->name}} Kuru Ortalaması:</td>
+                                                <td>{{$level->name}} Level Average:</td>
                                                 <td id="genelProNot">{{sprintf("%.1f", $totalGrades[$key])}}</td>
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td>Durum:</td>
+                                            <td>Situation:</td>
                                             <td id="durum"><?php (array_sum($totalGrades) / count($totalGrades) >= 60)
-                                            ? print('<span style="color: green">Başarılı</span>') : print('<span style="color: red">Başarısız</span>') ?></td>
+                                            ? print('<span style="color: green">Successfull</span>') : print('<span style="color: red">Unsuccessfull</span>') ?></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -121,8 +121,8 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                 <div class="col-12 text-center">
                                     <div class="kur-label">
                                         <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                        <div class="kur-label-ortala">{{$level->name}} kuru</br>
-                                            ortalaması
+                                        <div class="kur-label-ortala">{{$level->name}} level</br>
+                                            average
                                         </div>
                                     </div>
                                     <div class="kur-not">
@@ -132,7 +132,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                         </div>
                                     </div>
                                     <button type="submit" name="hesapla" id="hesaplaA" class="btn hesapla-butonu-arkaplan">
-                                        Hesapla
+                                        Calculate
                                     </button>
                                 </div>
                             </div>

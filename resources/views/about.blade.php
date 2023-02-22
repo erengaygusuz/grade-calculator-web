@@ -6,7 +6,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
 @extends('layouts.app')
 @section('title')
-    Hakkında
+    About
 @endsection
 
 @section('navbar.left.item')
@@ -25,7 +25,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 @section('second-navbar')
     <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
         <div class="col-12 about-title text-center">
-            Hakkında
+            About
         </div>
     </nav>
 @endsection
@@ -38,12 +38,12 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                 <div class="card card-primary" style="margin: 10px; ">
                     <div class="card-body text-center">
                         <h6 class="about-text-1">
-                            Bu web sitesi Atılım Üniversitesi Hazırlık Okulu öğrencilerinin
+                            This website was prepared for Primary School Students of
                             </br>
-                            notlarını kolaylıkla hesaplamalarını sağlamak amacıyla tasarlanmıştır.
+                            Atilim University to make their grade calculation process easy.
                         </h6>
                         <h6 class="about-text-2">
-                            Hazırlayanlar
+                            Prepared by
                         </h6>
                         <div class="col-lg-12">
                             <img class="about-developer-eren" src="{{asset('assets/img/hakkindaEren.svg')}}"/>

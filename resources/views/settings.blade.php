@@ -6,7 +6,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 
 @extends('layouts.app')
 @section('title')
-    Ayarlar
+    Settings
 @endsection
 
 @section('navbar.left.item')
@@ -25,7 +25,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 @section('second-navbar')
     <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">
         <div class="col-12 about-title text-center">
-            Ayarlar
+            Settings
         </div>
     </nav>
 @endsection
@@ -44,7 +44,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModal2Label">Hata</h1>
+                        <h1 class="modal-title fs-5" id="exampleModal2Label">Warning</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -55,7 +55,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tamam</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                             <div class="card border-primary mb-3">
                                 <div class="card-body">
                                     <div class="float-start" style="margin-top: 15px;">
-                                        <h6>{{$levelItem->name}} Yüzdesi</h6>
+                                        <h6>{{$levelItem->name}} Percentage</h6>
                                     </div>
                                     <div class="float-end">
                                         <input type="text" class="form-control yuzde-input-ayar"
@@ -83,7 +83,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                             </div>
                         @endforeach
                         <button type="submit" name="kaydet" id="kaydet" class="btn settingsUpdateBtn"
-                                style="margin-top: 45px;">Kaydet
+                                style="margin-top: 45px;">Update
                         </button>
                         <div class="kur-not">
                             <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"
@@ -94,7 +94,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         @csrf
                         @method('PUT')
                         <button type="submit" name="varsayilan" id="varsayilan" class="btn settingsDefaultBtn"
-                                style="margin-top: 45px;">Varsayılan
+                                style="margin-top: 45px;">Default
                         </button>
                     </form>
                 </div>

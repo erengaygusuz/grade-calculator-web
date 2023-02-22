@@ -14,7 +14,13 @@
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
 
     <link rel="shortcut icon" href="{{asset('assets/img/notes.ico')}}">
-
+    <style>
+        @font-face {
+            font-family: titleFont;
+            size-adjust: 150%;
+            src: url({{asset('assets/fonts/digital-7.regular.ttf')}});
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar" style="background: #1B75BB; border: 1px solid #2F5190;">

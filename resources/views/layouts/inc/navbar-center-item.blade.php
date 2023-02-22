@@ -1,3 +1,3 @@
-<div class="navbar-brand mx-auto" style="padding-left: 40px;" href="#">
-    <img class="img-fluid" width="170" height="50" src="{{asset('assets/img/notHesaplamaBaslik.svg')}}" alt="">
+<div class="navbar-brand mx-auto text-center">
+    <span style="font-family: titleFont; color: white; font-size: 20px">GRADE CALCULATOR</span>
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Ana Sayfa
+    Main Page
 @endsection
 
 @section('navbar.right.item')
@@ -21,12 +21,12 @@
     <div class="row">
         <div class="home-info-text-1 text-center">
             <h3 class="home-info-text-2">
-                Hoşgeldiniz <b>{{ Auth::user()->name }} {{ Auth::user()->surname }}</b>
+                Welcome <b>{{ Auth::user()->name }} {{ Auth::user()->surname }}</b>
             </h3>
             </br>
-            Notlarınızı hesaplamak için hazırlık okulunda aldığınız kurları seçmeniz gerekiyor.
+            To calculate grades, you should choose the levels of primary school which you studied.
             </br>
-            Lütfen size uygun olan kurların bulunduğu görsele tıklayınız.
+            Please click the option button which includes your levels.
         </div>
     </div>
     <div class="row mt-5 mb-5">
