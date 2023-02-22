@@ -38,7 +38,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                 <div class="card card-primary" style="margin: 10px; ">
                     <div class="card-body text-center">
                         <h6 class="about-text-1">
-                            This website was prepared for Primary School Students of
+                            This website was prepared for Prep School Students of
                             <br>
                             Atilim University to make their grade calculation process easy.
                         </h6>
