@@ -29,11 +29,11 @@
 
 ## Project Usage
 
-* Clone the project using this command: https://github.com/erengaygusuz/grade-calculator-web.git
+* Clone the project using this command: ``` https://github.com/erengaygusuz/grade-calculator-web.git ```
 * Open project with PHP Storm (You can also use VS Code or others)
-* Open terminal and run this command: docker-compose up
+* Open terminal and run this command: ``` docker-compose up ```
 * Every service will be run one by one. 
-* After that open a browser and go to http://localhost:8000 to see the system.
+* After that open a browser and go to ``` http://localhost:8000 ``` to see the system.
 
 ## Project Architecture
 
