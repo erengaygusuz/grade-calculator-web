@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +31,9 @@ Route::middleware(['auth'])->group(function (){
     Route::put('settings/update', [App\Http\Controllers\SettingsController::class, 'updatePercentages']);
 
     Route::get('about/{option_id}', [App\Http\Controllers\AboutController::class, 'index']);
+});
+
+Route::fallback(function ()
+{
+    return Redirect::back();
 });

@@ -31,20 +31,40 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 @endsection
 
 @section('content')
-
+    @if ($errors->any())
+        <script type="text/javascript">
+            window.onload = function () {
+                OpenBootstrapPopup();
+            };
+            function OpenBootstrapPopup() {
+                $("#exampleModal2").modal('show');
+            }
+        </script>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModal2Label">Hata</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tamam</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-12 col-12 ">
                 <div class="text-center mt-5">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <form method="POST" action="{{ url('settings/update') }}" style="display: inline">
                         @csrf
                         @method('PUT')
