@@ -12,7 +12,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 @section('navbar.left.item')
     <a class="float-start" href="{{url('/option/'.$optionVal)}}">
         <img class="about-grade-calculation-btn" style="margin-left: 10px;"
-             src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
+             src="{{asset('assets/img/goBackCalculationBtn.svg')}}" alt="">
     </a>
 @endsection
 
@@ -75,25 +75,25 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                         <h6>{{$levelItem->name}} Percentage</h6>
                                     </div>
                                     <div class="float-end">
-                                        <input type="text" class="form-control yuzde-input-ayar"
+                                        <input type="text" class="form-control percentage-settings-input"
                                                value="{{$levelItem->currentPercentage}}"
                                                name="{{$levelItem->name}}_currentPercentage">
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                        <button type="submit" name="kaydet" id="kaydet" class="btn settingsUpdateBtn"
+                        <button type="submit" class="btn settingsUpdateBtn"
                                 style="margin-top: 45px;">Update
                         </button>
-                        <div class="kur-not">
-                            <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"
+                        <div class="level-grade">
+                            <img class="level-grade-background" src="{{asset('assets/img/parallelCenter.svg')}}"
                                  style="margin-top: 45px;"/>
                         </div>
                     </form>
                     <form method="POST" action="{{ url('settings/default') }}" style="display: inline">
                         @csrf
                         @method('PUT')
-                        <button type="submit" name="varsayilan" id="varsayilan" class="btn settingsDefaultBtn"
+                        <button type="submit" class="btn settingsDefaultBtn"
                                 style="margin-top: 45px;">Default
                         </button>
                     </form>

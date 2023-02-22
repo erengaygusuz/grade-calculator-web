@@ -7,7 +7,7 @@
     <a class="float-end" href="{{ route('logout') }}"
        onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-        <img class="img-fluid me-md-1" width="40" height="40" src="{{asset('assets/img/cikisBtn.svg')}}" alt="">
+        <img class="img-fluid me-md-1" width="40" height="40" src="{{asset('assets/img/logoutBtn.svg')}}" alt="">
     </a>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -23,9 +23,9 @@
             <h3 class="home-info-text-2">
                 Welcome <b>{{ Auth::user()->name }} {{ Auth::user()->surname }}</b>
             </h3>
-            </br>
+            <br>
             To calculate grades, you should choose the levels of primary school which you studied.
-            </br>
+            <br>
             Please click the option button which includes your levels.
         </div>
     </div>
@@ -34,19 +34,19 @@
 
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option/1')}}"><img class="option" src="{{asset('assets/img/secenek1.svg')}}"/></a>
+            <a href="{{url('/option/1')}}"><img class="option" src="{{asset('assets/img/option1.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option/2')}}"><img class="option" src="{{asset('assets/img/secenek2.svg')}}"/></a>
+            <a href="{{url('/option/2')}}"><img class="option" src="{{asset('assets/img/option2.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option/3')}}"><img class="option" src="{{asset('assets/img/secenek3.svg')}}"/></a>
+            <a href="{{url('/option/3')}}"><img class="option" src="{{asset('assets/img/option3.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option/4')}}"><img class="option" src="{{asset('assets/img/secenek4.svg')}}"/></a>
+            <a href="{{url('/option/4')}}"><img class="option" src="{{asset('assets/img/option4.svg')}}"/></a>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6 col-12 text-center">
-            <a href="{{url('/option/5')}}"><img class="option" src="{{asset('assets/img/secenek5.svg')}}"/></a>
+            <a href="{{url('/option/5')}}"><img class="option" src="{{asset('assets/img/option5.svg')}}"/></a>
         </div>
         <div class="col-lg-1">
 

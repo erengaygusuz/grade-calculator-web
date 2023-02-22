@@ -12,7 +12,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
 @section('navbar.left.item')
     <a class="float-start" href="{{url('/option/'.$optionVal)}}">
         <img class="about-grade-calculation-btn" style="margin-left: 10px;"
-             src="{{asset('assets/img/notHesaplamayaDonBtn.svg')}}" alt="">
+             src="{{asset('assets/img/goBackCalculationBtn.svg')}}" alt="">
     </a>
 @endsection
 
@@ -39,14 +39,14 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                     <div class="card-body text-center">
                         <h6 class="about-text-1">
                             This website was prepared for Primary School Students of
-                            </br>
+                            <br>
                             Atilim University to make their grade calculation process easy.
                         </h6>
                         <h6 class="about-text-2">
                             Prepared by
                         </h6>
                         <div class="col-lg-12">
-                            <img class="about-developer-eren" src="{{asset('assets/img/hakkindaEren.svg')}}"/>
+                            <img class="about-developer-eren" src="{{asset('assets/img/aboutEren.svg')}}"/>
                         </div>
                         <div class="col-lg-12 about-text-3">
                             © 2023

@@ -17,19 +17,19 @@ class OptionSeeder extends Seeder
     {
         DB::table('option')->insert([
             [
-                "name" => "Seçenek 1"
+                "name" => "Option 1"
             ],
             [
-                "name" => "Seçenek 2"
+                "name" => "Option 2"
             ],
             [
-                "name" => "Seçenek 3"
+                "name" => "Option 3"
             ],
             [
-                "name" => "Seçenek 4"
+                "name" => "Option 4"
             ],
             [
-                "name" => "Seçenek 5"
+                "name" => "Option 5"
             ]
         ]);
     }

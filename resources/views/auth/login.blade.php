@@ -79,7 +79,7 @@
                         </tr>
                         <tr id="processBtn" style="height: 100px;">
                             <td colspan="2" style="border: none;">
-                                <button class="btn btn-lg text-center" type="submit" name="giris"
+                                <button class="btn btn-lg text-center" type="submit"
                                         style="background-color: #1B75BB; color: white">Login
                                 </button>
                             </td>
@@ -154,7 +154,7 @@
                         </tr>
                         <tr id="processBtn" style="height: 100px;">
                             <td colspan="2" style="border: none;">
-                                <button class="btn btn-lg text-center" type="submit" name="giris"
+                                <button class="btn btn-lg text-center" type="submit"
                                         style="background-color: #1B75BB; color: white">Register
                                 </button>
                             </td>
@@ -167,26 +167,8 @@
 
             </div>
         </div>
-        <div class="modal modal-danger fade" id="modal-danger">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Hata</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p><span>Lütfen <b>Kullanıcı Adı</b> veya <b>Şifre</b> bilgilerinizi kontrol ediniz.</span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tamam</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
     </div>
 
-    <script src="{{asset('assets/js/kullanici-adi-kontrolu.js')}}"></script>
     <script>
         function myFunction1() {
             var loginCheck = document.getElementById("loginCheck");

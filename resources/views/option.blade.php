@@ -79,7 +79,7 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                         <div class="col-lg-12" style="padding: 10px;">
                             <div class="card card-primary" style="padding: 30px 30px 10px 30px; border-radius: 10px;">
                                 <div class="card-group">
-                                    <table class="table table-bordered" id="genel" style="border-color: black;">
+                                    <table class="table table-bordered" style="border-color: black;">
                                         <tbody>
                                         <tr>
                                             <td>Name and Surname:</td>
@@ -91,12 +91,12 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                         </tr>
                                         <tr>
                                             <td>General Average:</td>
-                                            <td id="genelOrt">{{sprintf("%.1f", array_sum($totalGrades) / count($totalGrades))}}</td>
+                                            <td>{{sprintf("%.1f", array_sum($totalGrades) / count($totalGrades))}}</td>
                                         </tr>
                                         @foreach($levels as $key=>$level)
                                             <tr>
                                                 <td>{{$level->name}} Level Average:</td>
-                                                <td id="genelProNot">{{sprintf("%.1f", $totalGrades[$key])}}</td>
+                                                <td>{{sprintf("%.1f", $totalGrades[$key])}}</td>
                                             </tr>
                                         @endforeach
                                         <tr>
@@ -119,25 +119,25 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                             @method('PUT')
                             <div class="row">
                                 <div class="col-12 text-center">
-                                    <div class="kur-label">
-                                        <img class="kur-label-arkaplan" src="{{asset('assets/img/paralelSol.svg')}}"/>
-                                        <div class="kur-label-ortala">{{$level->name}} level</br>
+                                    <div class="level-label">
+                                        <img class="level-label-background" src="{{asset('assets/img/parallelLeft.svg')}}"/>
+                                        <div class="level-label-center">{{$level->name}} level<br>
                                             average
                                         </div>
                                     </div>
-                                    <div class="kur-not">
-                                        <img class="kur-not-arkaplan" src="{{asset('assets/img/paralelOrta.svg')}}"/>
-                                        <div class="kur-not-ortala" id="sonucA">
+                                    <div class="level-grade">
+                                        <img class="level-grade-background" src="{{asset('assets/img/parallelCenter.svg')}}"/>
+                                        <div class="level-grade-center">
                                                 {{sprintf("%.1f", $totalGrades[$key])}}
                                         </div>
                                     </div>
-                                    <button type="submit" name="hesapla" id="hesaplaA" class="btn hesapla-butonu-arkaplan">
+                                    <button type="submit" class="btn grade-calculation-btn-background">
                                         Calculate
                                     </button>
                                 </div>
                             </div>
                             @foreach($level->levelItems as $levelItem)
-                                <div class="label-a mt-3 mb-1">
+                                <div class="level-label mt-3 mb-1">
                                     {{$levelItem->name}}
                                 </div>
                                 <div class="row mb-4">
@@ -149,10 +149,9 @@ $optionVal = explode("/", parse_url(url()->current())["path"])[2];
                                                         ->where('user_id', Auth::user()->id)
                                                         ->where('level_id', $level->id)
                                                         ->where('level_item_id', $levelItem->id) as $grade)
-                                                        <div class='col-lg-2 col-md-2 col-sm-2 col-2'
-                                                             style='margin: 0px; padding: 0px;'>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                                                             <input type='text' name='grade[]'
-                                                                   class='form-control yuzde-input-not' value='{{$grade->grade}}'>
+                                                                   class='form-control average-grade-input' value='{{$grade->grade}}'>
                                                         </div>
                                                     @endforeach
                                                 </div>

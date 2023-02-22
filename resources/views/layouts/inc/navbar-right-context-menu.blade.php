@@ -3,21 +3,21 @@
         <button class="btn three-dot dropbtn" onclick="myFunction()"></button>
         <div id="myDropdown" class="dropdown-content">
             <a href="{{url('/settings/'.$optionVal)}}">
-                <img src="{{asset('assets/img/ayaraDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                <img src="{{asset('assets/img/goBackSettingsBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                 Settings
             </a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <img src="{{asset('assets/img/sifirla.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                <img src="{{asset('assets/img/reset.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                 Reset
             </a>
             <a href="{{url('/about/'.$optionVal)}}">
-                <img src="{{asset('assets/img/hakkindayaDonBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
+                <img src="{{asset('assets/img/goBackAboutBtn.svg')}}" width="20px" height="20px" style="margin-right: 27px;">
                 About
             </a>
             <a href="{{ route('logout') }}"
                onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                <img width="20" height="20" src="{{asset('assets/img/cikisBtn.svg')}}" alt="" style="margin-right: 27px;">
+                <img width="20" height="20" src="{{asset('assets/img/logoutBtn.svg')}}" alt="" style="margin-right: 27px;">
                 Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
