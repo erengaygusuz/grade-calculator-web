@@ -39,7 +39,7 @@
 
 In this project, there are three service. These are PHP Service, Node Server nad Database Server. You can see the picture about it at below.
 
-![Alt text](/grade-calculator-architecture.png)
+![Alt text](/images/grade-calculator-architecture.png)
 
 ## Important Directories and Files
 
