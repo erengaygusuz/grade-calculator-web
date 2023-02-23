@@ -24,7 +24,7 @@
                 Welcome <b>{{ Auth::user()->name }} {{ Auth::user()->surname }}</b>
             </h3>
             <br>
-            To calculate grades, you should choose the levels of primary school which you studied.
+            For calculation, you should choose the levels of prep school which you studied.
             <br>
             Please click the option button which includes your levels.
         </div>
